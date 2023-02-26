@@ -1,4 +1,4 @@
-package main.java.com.example.demo.domain.lectureTest.entity;
+package com.example.demo.domain.lectureTest.entity;
 
 import lombok.Data;
 

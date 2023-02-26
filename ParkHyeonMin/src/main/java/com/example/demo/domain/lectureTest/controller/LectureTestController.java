@@ -1,4 +1,4 @@
-package main.java.com.example.demo.domain.lectureTest.controller;
+package com.example.demo.domain.lectureTest.controller;
 
 import com.example.demo.domain.lectureTest.entity.TestMember;
 import lombok.extern.slf4j.Slf4j;

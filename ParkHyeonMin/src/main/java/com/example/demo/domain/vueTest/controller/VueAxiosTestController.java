@@ -1,4 +1,4 @@
-package main.java.com.example.demo.domain.vueTest.controller;
+package com.example.demo.domain.vueTest.controller;
 
 import com.example.demo.domain.vueTest.controller.request.VueRequestTestData;
 import lombok.extern.slf4j.Slf4j;
