@@ -1,2 +1,0 @@
-# KHGPM-LectureNotes
-KHGPM-LectureNotes
