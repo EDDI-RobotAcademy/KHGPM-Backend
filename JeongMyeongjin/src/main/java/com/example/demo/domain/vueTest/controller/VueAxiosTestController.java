@@ -17,6 +17,6 @@ public class VueAxiosTestController {
 
     @PostMapping("/receive-test2")
     public void receiveTest (@RequestBody String winner) {
-        log.info("오목 승자는: " + winner);
+        log.info("오목 승자는 : " + winner);
     }
 }
