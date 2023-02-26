@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/demo.iml" filepath="$PROJECT_DIR$/.idea/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/KHGPM-Backend.iml" filepath="$PROJECT_DIR$/.idea/KHGPM-Backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ParkBMO/ParkBMO.iml" filepath="$PROJECT_DIR$/ParkBMO/ParkBMO.iml" />
     </modules>
   </component>
 </project>

@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class VueAxiosTestController {
 
-    @PostMapping("/receive-test")
-    public void receiveTest(@RequestBody VueRequestTestData vueRequestTestData) {
+    @PostMapping("/receive-winner-test")
+    public void receiveWinnerTest(@RequestBody VueRequestTestData vueRequestTestData) {
         log.info("요청된 데이터 정보 확인: " + vueRequestTestData);
+
     }
 
 }
