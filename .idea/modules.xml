@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/KHGPM-Backend.iml" filepath="$PROJECT_DIR$/.idea/KHGPM-Backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.demo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.demo.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/demo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/demo.main.iml" />
     </modules>
   </component>
