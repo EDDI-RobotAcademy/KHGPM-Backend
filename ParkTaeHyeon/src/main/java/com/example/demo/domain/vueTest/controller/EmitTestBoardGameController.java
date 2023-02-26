@@ -1,6 +1,6 @@
-package com.homework.demo.domain.vueTest.controller;
+package com.example.demo.domain.vueTest.controller;
 
-import com.homework.demo.domain.vueTest.controller.request.EmitTestBoardGameData;
+import com.example.demo.domain.vueTest.controller.request.VueRequestTestData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class EmitTestBoardGameController {
 
     @PostMapping("/winner-test")
-    public void receiveTest (@RequestBody EmitTestBoardGameData emitTestBoardGameData) {
+    public void receiveTest (@RequestBody VueRequestTestData.EmitTestBoardGameData emitTestBoardGameData) {
         log.info("오목 게임 승자 확인 : " + emitTestBoardGameData);
     }
 }

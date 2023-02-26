@@ -9,4 +9,10 @@ public class VueRequestTestData {
 
     private String memberName;
     private String major;
+
+    @ToString
+    @Getter
+    public static class EmitTestBoardGameData {
+        private String winner;
+    }
 }
