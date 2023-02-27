@@ -1,4 +1,5 @@
-package homework01.controller;
+package com.example.demo.domain.vueTest.controller;
+import com.example.demo.domain.vueTest.entity.BoardGameDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
