@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
@@ -10,6 +11,9 @@
         <module name="com.example.demo.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel>
+      <module name="demo.demo.main~1" target="17" />
+      <module name="demo.demo.test~1" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
