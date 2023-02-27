@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class VueConnectController {
     @PostMapping("/receive-name")
     public void receiveTest (@RequestBody VueRequestName reqName) {
-        log.info("요청된 데이터 정보 확인: " + reqName);
+        log.info("승리자 이름: " + reqName);
     }
 }
 
