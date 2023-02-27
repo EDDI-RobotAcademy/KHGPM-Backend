@@ -1,6 +1,7 @@
 package com.example.demo.domain.vueTest.controller;
 
 import com.example.demo.domain.vueTest.controller.request.VueRequestTestData;
+import com.example.demo.domain.vueTest.controller.request.WinnerTestData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,10 @@ public class VueAxiosTestController {
     @PostMapping("/receive-test")
     public void receiveTest(@RequestBody VueRequestTestData vueRequestTestData) {
         log.info("요청된 데이터 정보 확인: " + vueRequestTestData);
+    }
+    @PostMapping("/winner-receive-test")
+    public void receiveTest(@RequestBody WinnerTestData winnerTestData) {
+        log.info("요청된 데이터 정보 확인: " + winnerTestData);
     }
 }
 
