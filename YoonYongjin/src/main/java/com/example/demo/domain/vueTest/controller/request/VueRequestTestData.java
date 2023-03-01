@@ -5,7 +5,9 @@ import lombok.ToString;
 
 @ToString
 @Getter
-public class EmitRequestTestData {
+public class VueRequestTestData {
 
-    private String winner;
+    private String memberName;
+    private String major;
+
 }
