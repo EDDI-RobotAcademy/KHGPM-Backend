@@ -3,7 +3,10 @@ package player.service;
 import player.Player;
 import player.SpecialDicePattern;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PlayerServiceImpl implements PlayerService {
 
@@ -64,24 +67,25 @@ public class PlayerServiceImpl implements PlayerService {
 
         if (targetDiceNumber - STEAL_SCORE >= 0) {
             return STEAL_SCORE;
-        } else if (targetDiceNumber - STEAL_SCORE == -3) {
-            System.out.println("뺏을 점수가 없음");
-            return 0;
-        } else {
-            return targetDiceNumber;
         }
+
+        return targetDiceNumber;
     }
 
     private void stealEachPlayerScore (List<Player> playerList, int currentIdx) {
 
-        int myDiceNumber = calcTotalDiceNumber(playerList, currentIdx);
+        //int myDiceNumber = calcTotalDiceNumber(playerList, currentIdx);
+        int myDiceNumber = playerList.get(currentIdx).getTotalDiceScore();
 
         for (int i = 0; i < playerList.size(); i++) {
             if (i == currentIdx) { continue; }
 
-            int targetDiceNumber = calcTotalDiceNumber(playerList, i);
+            //int targetDiceNumber = calcTotalDiceNumber(playerList, i);
+            int targetDiceNumber = playerList.get(i).getTotalDiceScore();
 
-            myDiceNumber += howMuchCanWeSteal(myDiceNumber, targetDiceNumber);
+            int stealNumber = howMuchCanWeSteal(myDiceNumber, targetDiceNumber);
+            myDiceNumber += stealNumber;
+            playerList.get(i).setTotalDiceScore(targetDiceNumber - stealNumber);
         }
 
         playerList.get(currentIdx).setTotalDiceScore(myDiceNumber);
@@ -89,6 +93,8 @@ public class PlayerServiceImpl implements PlayerService {
 
     private void doDonate (int myDiceNumber, List<Player> playerList, int currentIdx) {
         final int DONATE_SCORE = 2;
+
+        System.out.println("현재 점수: " + myDiceNumber + ", 플레이어: " + currentIdx);
 
         for (int i = 0; i < playerList.size(); i++) {
             if (i == currentIdx) { continue; }
@@ -116,9 +122,24 @@ public class PlayerServiceImpl implements PlayerService {
     private void donateToEachPlayer (List<Player> playerList, int currentIdx) {
         final int DONATE_SCORE = 2;
 
-        int myDiceNumber = calcTotalDiceNumber(playerList, currentIdx);
+        //int myDiceNumber = calcTotalDiceNumber(playerList, currentIdx);
+        int myDiceNumber = playerList.get(currentIdx).getTotalDiceScore();
 
         doDonate(myDiceNumber, playerList, currentIdx);
+    }
+
+    private void everyoneLossScore (List<Player> playerList) {
+        final int LOSS_SCORE = 2;
+
+        for (int i = 0; i < playerList.size(); i++) {
+            //int totalScore = calcTotalDiceNumber(playerList, i);
+            int totalScore = playerList.get(i).getTotalDiceScore();
+
+            if (totalScore - LOSS_SCORE > 0) { totalScore -= LOSS_SCORE; }
+            else { totalScore = 0; }
+
+            playerList.get(i).setTotalDiceScore(totalScore);
+        }
     }
 
     private void postProcessAfterGetPattern (
@@ -131,7 +152,7 @@ public class PlayerServiceImpl implements PlayerService {
             //int targetDiceNumber;
 
             if (dicePattern == SpecialDicePattern.PATTERN_DEATH)
-                ;
+                playerList.get(currentIdx).setAlive(false);
 
             // 상대방의 Dice를 보고 뺏어와야함(없으면 뺏을것이 없는 상태이기도함)
             if (dicePattern == SpecialDicePattern.PATTERN_STEAL)
@@ -141,11 +162,11 @@ public class PlayerServiceImpl implements PlayerService {
                 donateToEachPlayer(playerList, currentIdx);
 
             if (dicePattern == SpecialDicePattern.PATTERN_BUDDY_FUCKER)
-                ;
+                everyoneLossScore(playerList);
 
             if (dicePattern == SpecialDicePattern.PATTERN_NOTHING) {
-                playerList.get(currentIdx).setTotalDiceScore(
-                        calcTotalDiceNumber(playerList, currentIdx));
+                // playerList.get(currentIdx).setTotalDiceScore(
+                //        calcTotalDiceNumber(playerList, currentIdx));
             }
 
     }
@@ -177,7 +198,7 @@ public class PlayerServiceImpl implements PlayerService {
         postProcessAfterGetPattern(dicePattern, playerList, currentIdx);
     }
     @Override
-    public Boolean playDiceGame(List<Player> playerList) {
+    public void playDiceGame(List<Player> playerList) {
         for (int i = 0; i < playerList.size(); i++) {
             System.out.println("player" + (i + 1) + ": ");
             applyEachPlayer(playerList, i);
@@ -186,11 +207,33 @@ public class PlayerServiceImpl implements PlayerService {
         for (int i = 0; i < playerList.size(); i++) {
             System.out.println("총합: " + playerList.get(i).getTotalDiceScore());
         }
-
-        return false;
     }
 
-    /*
+    @Override
+    public Player findWinner(List<Player> playerList) {
+        int winnerIdx = 0;
 
-     */
+        Collections.sort(playerList, Collections.reverseOrder());
+        System.out.println("After Sort");
+        System.out.println(playerList);
+
+        for (int i = 0; i < playerList.size(); i++) {
+            if (playerList.get(i).isAlive() == true) { break; }
+
+            winnerIdx = i + 1;
+        }
+
+        if (winnerIdx == playerList.size()) { return null; }
+
+        if (winnerIdx == playerList.size() - 1) { return playerList.get(winnerIdx); }
+
+        if (playerList.get(winnerIdx).getTotalDiceScore()
+                == playerList.get(winnerIdx + 1).getTotalDiceScore()) {
+
+            System.out.println("무승부");
+            return null;
+        }
+
+        return playerList.get(winnerIdx);
+    }
 }
