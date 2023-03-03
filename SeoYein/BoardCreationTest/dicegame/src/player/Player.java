@@ -1,6 +1,6 @@
 package player;
 
-public class Player {
+public class Player implements Comparable<Player> {
 
     final private Long playerId;
     final private String nickname;
@@ -8,6 +8,7 @@ public class Player {
     final private Dice specialDice;
 
     private int totalDiceScore;
+    private boolean isAlive;
 
     public Player(Long playerId, String nickname) {
         this.playerId = playerId;
@@ -19,6 +20,9 @@ public class Player {
         } else {
             this.specialDice = new Dice(0);
         }
+
+        isAlive = true;
+        totalDiceScore = getGeneralDiceNumber() + getSpecialDiceNumber();
     }
 
     @Override
@@ -50,5 +54,24 @@ public class Player {
 
     public void setTotalDiceScore(int totalDiceScore) {
         this.totalDiceScore = totalDiceScore;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    @Override
+    public int compareTo(Player otherPlayer) {
+        if (otherPlayer.totalDiceScore < totalDiceScore) {
+            return 1;
+        } else if (otherPlayer.totalDiceScore > totalDiceScore) {
+            return -1;
+        }
+
+        return 0;
     }
 }
