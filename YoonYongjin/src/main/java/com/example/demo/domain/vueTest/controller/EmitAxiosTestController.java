@@ -12,6 +12,7 @@ public class EmitAxiosTestController {
 
     @PostMapping("/receive-test")
     public void receiveTest (@RequestBody EmitRequestTestData EmitRequestTestData) {
+
         log.info("승패 확인: " + EmitRequestTestData);
     }
 }
