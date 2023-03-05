@@ -24,6 +24,6 @@ public class BoardServiceImpl implements BoardService {
         board.setContent(boardRequest.getContent());
 
         boardRepository.save(board);
-        
+
     }
 }
