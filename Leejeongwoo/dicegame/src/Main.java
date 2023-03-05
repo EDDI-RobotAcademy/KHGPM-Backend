@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+
+    // 3판 하겠다는 소리
     final public static int PLAYER_MAX = 3;
 
     public static void main(String[] args) {
@@ -21,9 +23,7 @@ public class Main {
 
         for (int i = 0; i < PLAYER_MAX; i++) {
             Player player = new Player(
-                    AutoIncrementGenerator.getEntityAutoIncrementValue("Player"),
-                    "Player" + (i + 1)
-            );
+                    AutoIncrementGenerator.getEntityAutoIncrementValue("Player"));
             addPlayer(playerList, player);
         }
         // 정렬 전

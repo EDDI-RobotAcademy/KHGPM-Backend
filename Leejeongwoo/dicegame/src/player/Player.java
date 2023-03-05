@@ -10,7 +10,7 @@ public class Player implements Comparable<Player>{
     private int totalDiceScore;
     private boolean isAlive;
 
-    public Player(Long playerId, String nickname) {
+    public Player(Long playerId) {
         this.playerId = playerId;
 //        this.nickname = nickname;
         this.generalDice = new Dice();

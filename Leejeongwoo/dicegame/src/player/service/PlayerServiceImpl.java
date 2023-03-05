@@ -8,8 +8,9 @@ import java.util.List;
 
 public class PlayerServiceImpl implements PlayerService {
 
-    final int EVEN_ODD_DECISION_VALUE = 2;
-    final int EVEN = 0;
+      // 첫번째 주사위 홀/짝 판별 할때 상수 지정
+//    final int EVEN_ODD_DECISION_VALUE = 2;
+//    final int EVEN = 0;
 
     // 1. 일반 주사위를 보고 짝수인지 판정한다.
     // 2. 짝수라면 특수 주사위의 숫자를 파악한다.
@@ -42,6 +43,7 @@ public class PlayerServiceImpl implements PlayerService {
     private SpecialDicePattern checkSpecialDicePattern (
             int specialDice, List<Player> playerList, int currentIdx) {
 
+        // 2번째 주사이가 4가 나오면
         if (specialDice == SpecialDicePattern.PATTERN_DEATH.getValue())
             return SpecialDicePattern.PATTERN_DEATH;
 
@@ -62,9 +64,11 @@ public class PlayerServiceImpl implements PlayerService {
 //                playerList.get(currentIdx).getSpecialDiceNumber();
 //    }
 
+    //3점씩 점수 가져오기~
     private int howMuchCanWeSteal (int myDiceNumber, int targetDiceNumber) {
         final int STEAL_SCORE = 3;
 
+        // 만약에 그놈 점수 - 3 을했을 때 0보다 크거나 같으면 3가져올 수있죠
         if (targetDiceNumber - STEAL_SCORE >= 0) {
             return STEAL_SCORE;
         }
@@ -72,6 +76,7 @@ public class PlayerServiceImpl implements PlayerService {
 //            System.out.println("뺏을 점수가 없음");
 //            return 0;
 //        } else {
+        //그게 아니면 그냥 그놈 점수 다 가져와라(그뜻은 3보다 작은 점수가 되겠죠)
         return targetDiceNumber;
 //        }
     }
@@ -82,46 +87,62 @@ public class PlayerServiceImpl implements PlayerService {
         int myDiceNumber = playerList.get(currentIdx).getTotalDiceScore();
 
         for (int i = 0; i < playerList.size(); i++) {
+
             // 점수 뺏어올때 내 순서가 되면 다음 순서로 넘어가라
             if (i == currentIdx) { continue; }
 
-            //int targetDiceNumber = calcTotalDiceNumber(playerList, i);
             int targetDiceNumber = playerList.get(i).getTotalDiceScore();
-
             int stealNumber = howMuchCanWeSteal(myDiceNumber, targetDiceNumber);
+            // 내 점수에 스틸한 점수 더해서 저장
             myDiceNumber += stealNumber;
 //            myDiceNumber += howMuchCanWeSteal(myDiceNumber, targetDiceNumber);
+            //뺏긴놈은 뺏긴 점수 계산해서 저장
             playerList.get(i).setTotalDiceScore(targetDiceNumber - stealNumber);
         }
-
+        //나도 내점수 저장~
         playerList.get(currentIdx).setTotalDiceScore(myDiceNumber);
     }
 
+    //2점씩 기부~
     private void doDonate (int myDiceNumber, List<Player> playerList, int currentIdx) {
         final int DONATE_SCORE = 2;
 
 //        System.out.println("현재 점수: " + myDiceNumber + ", 플레이어: " + currentIdx);
 
         for (int i = 0; i < playerList.size(); i++) {
+            // 점수 뺏어올때 내 순서가 되면 다음 순서로 넘어가라
             if (i == currentIdx) { continue; }
 
             int targetTotalScore = playerList.get(i).getTotalDiceScore();
             int donationValue = 0;
 
+            // 내 점수가 2 보다 크거나 같으면
+            // 내점수에서 2를 빼고 저장하고
+            // 기부할 점수 = 2
             if (myDiceNumber >= DONATE_SCORE) {
                 myDiceNumber -= DONATE_SCORE;
                 donationValue = DONATE_SCORE;
+
+            // 내점수가 0보다 크면
+            // 내점수에서 2빼고 저장하고
+            // 기부할 점수 = 1
             } else if (myDiceNumber > 0) {
                 myDiceNumber -= DONATE_SCORE;
                 donationValue = 1;
+
+            // 내 점수가 0보다 작으면 기부할께 없으니까
+            // 당연히 기부 못하겠지?
+            // 그래서 내 점수 = 0
+            // 기부할 점수 = 0
             } else {
                 System.out.println("기부 불가");
-                donationValue = 0;
                 myDiceNumber = 0;
+                donationValue = 0;
             }
 
-            // targetTotalScore 이놈 점수에 (위의 if문을 통해) 나의 점수 나줘 줌
+            // targetTotalScore 이놈 점수에 (위의 if문을 통해) 기부할 점수 더해줌
             playerList.get(i).setTotalDiceScore(targetTotalScore + donationValue);
+            //나도 내점수 저장~
             playerList.get(currentIdx).setTotalDiceScore(myDiceNumber);
         }
     }
@@ -135,15 +156,20 @@ public class PlayerServiceImpl implements PlayerService {
         doDonate(myDiceNumber, playerList, currentIdx);
     }
 
+    // 전부다 2점씩 감점~
     private void everyoneLossScore (List<Player> playerList) {
         final int LOSS_SCORE = 2;
 
         for (int i = 0; i < playerList.size(); i++) {
-            //int totalScore = calcTotalDiceNumber(playerList, i);
             int totalScore = playerList.get(i).getTotalDiceScore();
 
+            // 토탈 점수 - 2 가 0 보다 크면
+            // 토탈 점수에서 2빼서 저장하고
             if (totalScore - LOSS_SCORE > 0) {
                 totalScore -= LOSS_SCORE;
+
+            // 토탈 점수 -2 가 0보다 작으면
+            // 토탈 점수 = 0
             }else {
                 totalScore = 0;
             }
@@ -152,7 +178,7 @@ public class PlayerServiceImpl implements PlayerService {
         }
     }
 
-    //스페셜주사위 던지고 진행
+    //스페셜주사위까지 다 던지고 다음 꺼 진행~
     private void postProcessAfterGetPattern (
             SpecialDicePattern dicePattern,
             List<Player> playerList,
@@ -199,8 +225,7 @@ public class PlayerServiceImpl implements PlayerService {
 
         int specialDice = getSpecialDiceNumber(playerList, currentIdx);
 
-        SpecialDicePattern dicePattern =
-                checkSpecialDicePattern(specialDice, playerList, currentIdx);
+        SpecialDicePattern dicePattern = checkSpecialDicePattern(specialDice, playerList, currentIdx);
 
         System.out.println("두번째 주사위가 " + dicePattern.getValue()+" 나와서 " + dicePattern.getName());
 
@@ -213,16 +238,16 @@ public class PlayerServiceImpl implements PlayerService {
             System.out.println("player" + (i + 1) + ": ");
             applyEachPlayer(playerList, i);
 
+            //플레이어의 총합이 게임 종료일 때가 아니다 ㅠㅠ
+            System.out.println("주사위의 총합은 " + playerList.get(i).getTotalDiceScore() + "입니다.");
+
             System.out.println();
         }
+        // 플레이어의 총합이 전체적 으로 계산 됨 근데 따로 나와서 맘에 안듬
         for (int i = 0; i < playerList.size(); i++) {
             System.out.println("주사위의 총합은 " + playerList.get(i).getTotalDiceScore() + "입니다.");
         }
         System.out.println("------------------------------------------------------------------------------------------------------");
-
-//        for (int i = 0; i < playerList.size(); i++) {
-//            System.out.println("총합: " + playerList.get(i).getTotalDiceScore());
-//        }
 
     }
 
@@ -239,6 +264,8 @@ public class PlayerServiceImpl implements PlayerService {
         // 정렬하고 반복문을 돌렸기 때문에 0번 인덱스에는 최고점인 플레이어가 있을 것이다.
         for (int i = 0; i < playerList.size(); i++) {
 
+            System.out.println("winnerIdx  ->> "+winnerIdx);
+
             // 현재 플레이어(i)가 살아 있으면 break
             // 살아 있으면 그놈이 우승자
             if (playerList.get(i).isAlive() == true) {
@@ -251,6 +278,7 @@ public class PlayerServiceImpl implements PlayerService {
         }
 
         // (1 or 2 or 3) == 3 이면 null 리턴
+        // 다 뒤졌을 때 ;;
         if (winnerIdx == playerList.size()) {
             return null;
         }
@@ -261,14 +289,13 @@ public class PlayerServiceImpl implements PlayerService {
         }
 
         //플레이어(승자)의 점수 == 플레이어 의 점수가 같으면 무승부
+        //3명 다 똑같아도 무승부
         if (playerList.get(winnerIdx).getTotalDiceScore()
                 == playerList.get(winnerIdx + 1).getTotalDiceScore()) {
-
             System.out.println("무승부");
             return null;
         }
 
-        //
         return playerList.get(winnerIdx);
     }
 }
