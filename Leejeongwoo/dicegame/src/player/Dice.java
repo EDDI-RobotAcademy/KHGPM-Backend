@@ -21,10 +21,14 @@ public class Dice {
         return diceNumber;
     }
 
+//    @Override
+//    public String toString() {
+//        return "Dice{" +
+//                "diceNumber=" + diceNumber +
+//                '}';
+//    }
     @Override
     public String toString() {
-        return "Dice{" +
-                "diceNumber=" + diceNumber +
-                '}';
+        return diceNumber +"" ;
     }
 }

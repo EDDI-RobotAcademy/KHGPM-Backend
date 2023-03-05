@@ -3,7 +3,7 @@ package player;
 public class Player implements Comparable<Player>{
 
     final private Long playerId;
-    final private String nickname;
+//    final private String nickname;
     final private Dice generalDice;
     final private Dice specialDice;
 
@@ -12,7 +12,7 @@ public class Player implements Comparable<Player>{
 
     public Player(Long playerId, String nickname) {
         this.playerId = playerId;
-        this.nickname = nickname;
+//        this.nickname = nickname;
         this.generalDice = new Dice();
 
         if (generalDice.getDiceNumber() % 2 == 0) {
@@ -24,14 +24,15 @@ public class Player implements Comparable<Player>{
         totalDiceScore = getGeneralDiceNumber() + getSpecialDiceNumber();
     }
 
+
+    public String playerListWinner() {
+        return "축하드립니다. "+playerId + "번 플레이어의 승리입니다!!" + '\n';
+    }
     @Override
     public String toString() {
-        return "Player{" +
-                "playerId=" + playerId +
-                ", nickname='" + nickname + '\'' +
-                ", generalDice=" + generalDice +
-                ", specialDice=" + specialDice +
-                '}' + '\n';
+        return playerId + "번 플레이어 의" +
+                " 첫번째 주사위 = " + generalDice +
+                ", 두번째 주사위 = " + specialDice + '\n';
     }
 
     public int getGeneralDiceNumber() {
