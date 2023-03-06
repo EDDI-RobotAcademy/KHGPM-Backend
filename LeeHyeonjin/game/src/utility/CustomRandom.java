@@ -8,7 +8,7 @@ public class CustomRandom {
 
     private static Random random = new Random();
 
-    public static int createcustomRandom(int max, int min){
+    public static int createCustomRandom(int max, int min){
         return random.nextInt(max-min+1) + min;
     }
 
