@@ -33,13 +33,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<Board> list() {
+    public List<Board> list() {  //boardId 내림차순으로 리스트 출력
         return boardRepository.findAll(Sort.by(Sort.Direction.DESC, "boardId"));
     }
 
     @Override
     public Board read(Long boardId) {
-        // ~일수도 있고 아닐수도 있고
+        // ~일수도 있고 아닐수도 있고 (null일수도 있는 객체를 감싸는 일종의 wrapper 클래스)
         Optional<Board> maybeBoard = boardRepository.findById(boardId);
 
         if(maybeBoard.isEmpty()) {
