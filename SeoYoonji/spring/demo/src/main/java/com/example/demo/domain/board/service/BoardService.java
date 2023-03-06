@@ -11,4 +11,8 @@ public interface BoardService {
     List<Board> list();
 
     Board read(Long boardId);
+
+    void remove(Long boardId);
+
+    Board modify(Long boardId, BoardRequest boardRequest);
 }

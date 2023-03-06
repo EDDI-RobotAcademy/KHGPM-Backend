@@ -40,4 +40,17 @@ public class BoardController {
 
         return boardService.read(boardId);
     }
+
+    @DeleteMapping("/{boardId}")  //가변인자로 전달해야함
+    public void boardRemove(@PathVariable("boardId") Long boardId) {
+        log.info("boardRemove()");
+        boardService.remove(boardId);
+    }
+
+    @PutMapping("/{boardId}")
+    public Board boardModify(@PathVariable("boardId") Long boardId,
+                             @RequestBody BoardRequest boardRequest) {
+        log.info("boardModify()");
+        return boardService.modify(boardId, boardRequest);
+    }
 }
