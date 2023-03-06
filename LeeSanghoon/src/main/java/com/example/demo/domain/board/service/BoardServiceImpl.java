@@ -4,7 +4,10 @@ import com.example.demo.domain.board.controller.request.BoardRequest;
 import com.example.demo.domain.board.entity.Board;
 import com.example.demo.domain.board.repository.BoardRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -24,5 +27,10 @@ public class BoardServiceImpl implements BoardService {
         board.setContent(boardRequest.getContent());
 
         boardRepository.save(board);
+    }
+
+    @Override
+    public List<Board> list() {
+        return boardRepository.findAll(Sort.by(Sort.Direction.DESC, "boardId"));
     }
 }
