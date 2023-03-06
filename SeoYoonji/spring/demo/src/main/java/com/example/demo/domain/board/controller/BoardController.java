@@ -1,9 +1,12 @@
 package com.example.demo.domain.board.controller;
 
 import com.example.demo.domain.board.controller.request.BoardRequest;
+import com.example.demo.domain.board.entity.Board;
 import com.example.demo.domain.board.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j //로그 남기기
 @RestController  //@Controller + @ResponseBody -> 단순히 객체만을 반환. JSON 형식으로 객체 데이터를 전송한다.
@@ -23,5 +26,18 @@ public class BoardController {
         log.info("boardRegister()");
 
         boardService.register(boardRequest);
+    }
+
+    @GetMapping("/list")
+    public List<Board> boardList () {
+        log.info("boardList()");
+        return boardService.list();
+    }
+
+    @GetMapping("/{boardId}")
+    public Board boardRead(@PathVariable("boardId") Long boardId) {
+        log.info("boardRead()");
+
+        return boardService.read(boardId);
     }
 }
