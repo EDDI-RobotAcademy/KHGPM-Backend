@@ -3,6 +3,7 @@ package utility;
 import java.util.HashMap;
 import java.util.Map;
 
+// 플레이어들 자동 시퀀스 느낌?
 public class AutoIncrementGenerator {
 
     private static Map<String, Long> entityNameMappedCurrentId = new HashMap<>();
@@ -11,7 +12,7 @@ public class AutoIncrementGenerator {
         if (entityNameMappedCurrentId.get(entityName) == null) {
             entityNameMappedCurrentId.put(entityName, 1L);
         } else {
-            System.out.println("중복 시켰어!!!");
+            System.out.println("이미 있는 놈이야");
         }
     }
 
