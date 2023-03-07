@@ -3,6 +3,7 @@ package com.example.demo.domain.board.service;
 import com.example.demo.domain.board.controller.request.BoardRequest;
 import com.example.demo.domain.board.entity.Board;
 import com.example.demo.domain.board.repository.BoardRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -12,13 +13,15 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
     final private BoardRepository boardRepository;
 
-    public BoardServiceImpl(BoardRepository boardRepository) {
-        this.boardRepository = boardRepository;
-    }
+    // @RequiredArgsConstructor 가 대신 해줌(초기화 되지 않은 final 필드에 대해 생성자 생성해 준다)
+//    public BoardServiceImpl(BoardRepository boardRepository) {
+//        this.boardRepository = boardRepository;
+//    }
 
     @Override
     public void register(BoardRequest boardRequest) {

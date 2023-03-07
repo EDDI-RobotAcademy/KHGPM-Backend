@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@RestController
+@RestController // 모든 반환값을 json 형태로 만들어준다.
 @RequestMapping("/board")
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class BoardController {
