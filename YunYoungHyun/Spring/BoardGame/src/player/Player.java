@@ -13,6 +13,8 @@ public class Player implements Comparable<Player> {
     final private Dice specialDice;
     private int totalDiceScore;
     private boolean isAlive;
+    private String calculate = "";
+    private String patternName = "";
 
     public Player(Long playerId, String nickname) {
         this.playerId = playerId;
@@ -26,6 +28,11 @@ public class Player implements Comparable<Player> {
         }
         isAlive = true;
         totalDiceScore = getGeneralDiceNumber() + getSpecialDiceNumber();
+//        this.calculate = String.valueOf(getGeneralDiceNumber()) + "(일반) + "+ String.valueOf(getSpecialDiceNumber()) + "(특수)";
+    }
+
+    public Long getPlayerId() {
+        return this.playerId;
     }
 
     public int getGeneralDiceNumber() {
@@ -48,6 +55,20 @@ public class Player implements Comparable<Player> {
     }
     public void setAlive(boolean isAlive) {
         this.isAlive = isAlive;
+    }
+
+    public String getCalculate() {
+        return calculate;
+    }
+    public void setCalculate(String calculate) {
+        this.calculate += calculate;
+    }
+
+    public String getPatternName() {
+        return patternName;
+    }
+    public void setPatternName(String patternName) {
+        this.patternName = patternName;
     }
 
     @Override
