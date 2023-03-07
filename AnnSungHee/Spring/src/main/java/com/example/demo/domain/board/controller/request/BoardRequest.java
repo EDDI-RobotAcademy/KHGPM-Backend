@@ -1,9 +1,6 @@
 package com.example.demo.domain.board.controller.request;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Getter // 해당 클래스에 멤버변수에 대한 getter 메서드를 자동으로 생성
