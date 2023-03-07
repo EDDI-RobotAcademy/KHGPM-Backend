@@ -1,13 +1,14 @@
-package com.example.demo.domain.board.controller.request;
+package com.example.demo.domain.product.controller.request;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class BoardRequest {
+public class ProductRequest {
 
-    final private String title;
+    final private String productName;
     final private String writer;
     final private String content;
+    final private Integer price;
 }
