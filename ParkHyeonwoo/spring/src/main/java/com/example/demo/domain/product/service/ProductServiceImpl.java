@@ -44,4 +44,29 @@ public class ProductServiceImpl implements ProductService {
 
         return maybeProduct.get();
     }
+
+    @Override
+    public Product modify(Long productId, ProductRequest productRequest) {
+        Optional<Product> maybeProduct = productRepository.findById(productId);
+
+        if(maybeProduct.isEmpty()) {
+            System.out.println("Product 정보를 찾지 못했습니다: " + productId);
+            return null;
+        }
+
+        Product product = maybeProduct.get();
+        product.setProductName(productRequest.getProductName());
+        product.setContent(productRequest.getContent());
+        product.setPrice(productRequest.getPrice());
+
+        productRepository.save(product);
+
+        return product;
+    }
+
+    @Override
+    public void remove(Long productId) {
+        productRepository.deleteById(productId);
+    }
+
 }

@@ -19,14 +19,14 @@ public class ProductController {
     final private ProductService productService;
 
     @PostMapping("/register")
-    public void productBoardRegister(@RequestBody ProductRequest productRequest) {
+    public void productRegister(@RequestBody ProductRequest productRequest) {
         log.info("productRegister()");
 
         productService.register(productRequest);
     }
 
     @GetMapping("/list")
-    public List<Product> ProductList() {
+    public List<Product> productList() {
         log.info("productList()");
 
         return productService.list();
@@ -37,5 +37,21 @@ public class ProductController {
         log.info("productRead()");
 
         return productService.read(productId);
+    }
+
+    @PutMapping("/{productId}")
+    public Product productModify(@PathVariable("productId") Long productId,
+                                 @RequestBody ProductRequest productRequest) {
+
+        log.info("productModify(): " + productRequest + "id: " + productId);
+
+        return productService.modify(productId, productRequest);
+    }
+
+    @DeleteMapping("/{productId}")
+    public void productRemove(@PathVariable("productId") Long productId) {
+        log.info("productRemove()");
+
+        productService.remove(productId);
     }
 }
