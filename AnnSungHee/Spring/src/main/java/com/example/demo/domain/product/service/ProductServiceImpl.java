@@ -31,36 +31,36 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> list() {
-        return productRepository.findAll(Sort.by(Sort.Direction.DESC, "boardId"));
+        return productRepository.findAll(Sort.by(Sort.Direction.DESC, "productId"));
     }
 
     @Override
-    public Product read(Long boardId) {
+    public Product read(Long productId) {
         // 일 수도 있고 아닐 수도 있고
-        Optional<Product> maybeBoard = productRepository.findById(boardId);
+        Optional<Product> maybeproduct = productRepository.findById(productId);
 
-        if (maybeBoard.isEmpty()) {
+        if (maybeproduct.isEmpty()) {
             log.info("읽을 수가 없드아!");
             return null;
         }
 
-        return maybeBoard.get();
+        return maybeproduct.get();
     }
     @Override
-    public void remove(Long boardId) {
-        productRepository.deleteById(boardId);
+    public void remove(Long productId) {
+        productRepository.deleteById(productId);
     }
 
     @Override
-    public Product modify(Long boardId, ProductRequest productRequest) {
-        Optional<Product> maybeBoard = productRepository.findById(boardId);
+    public Product modify(Long productId, ProductRequest productRequest) {
+        Optional<Product> maybeproduct = productRepository.findById(productId);
 
-        if (maybeBoard.isEmpty()) {
-            System.out.println("Board 정보를 찾지 못했습니다: " + boardId);
+        if (maybeproduct.isEmpty()) {
+            System.out.println("product 정보를 찾지 못했습니다: " + productId);
             return null;
         }
 
-        Product product = maybeBoard.get();
+        Product product = maybeproduct.get();
         product.setName(productRequest.getName());
         product.setPrice(productRequest.getPrice());
 
