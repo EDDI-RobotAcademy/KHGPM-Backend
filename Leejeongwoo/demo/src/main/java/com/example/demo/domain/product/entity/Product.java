@@ -1,31 +1,33 @@
-package com.example.demo.domain.board.entity;
+package com.example.demo.domain.product.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
-
 
 @Data
 @Entity
-public class Board {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long boardId;
+    private Long productId;
 
     @Column(length = 128, nullable = false)
-    private String title;
+    private String productName;
 
     @Column(length = 32, nullable = false)
-    private String writer;
+    private String productKategorie;
 
     @Lob
-    private String content;
+    private String productContent;
+
+    @Column(length = 32, nullable = false)
+    private String productBrand;
+
+    private Integer productPrice;
 
     @CreationTimestamp
     private Date regDate;
