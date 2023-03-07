@@ -10,4 +10,6 @@ public interface ProductService {
     public void register(ProductRequest productRequest);
 
     List<Product> list();
+
+    Product read(Long productId);
 }
