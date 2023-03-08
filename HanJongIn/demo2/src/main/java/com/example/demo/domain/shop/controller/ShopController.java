@@ -28,6 +28,7 @@ public class ShopController {
         shopService.register(shopRequest);
     }
 
+    @GetMapping("/list")
     public List<Product> productList () {
         log.info("productList()");
 
