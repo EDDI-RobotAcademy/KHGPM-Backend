@@ -30,6 +30,8 @@ public class FileController {
             for (MultipartFile multipartFile: fileList) {
                 log.info("requestFileUploadWithText() - filename: " + multipartFile.getOriginalFilename());
 
+                // 사용자 계정 이름마다 별도로 사진을 배치하게 구성
+                // 등록한 시간을 파일명 어딘가에 붙여서 파일을 저장
                 FileOutputStream writer = new FileOutputStream(
                         "../../KHGPM-Frontend/LeeSanghoon/frontend/src/assets/uploadImgs/" +
                                 multipartFile.getOriginalFilename()
