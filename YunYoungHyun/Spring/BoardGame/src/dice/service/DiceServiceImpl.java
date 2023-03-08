@@ -11,6 +11,8 @@ public class DiceServiceImpl implements DiceService {
     public void checkSpecialDicePattern(int specialDice, List<Player> playerList, int currentIdx) {
         SpecialDicePattern dicePattern = null;
 
+        if(!playerIsAlive(playerList, currentIdx)) return;
+
         if(specialDice == SpecialDicePattern.PATTERN_BUDDY_FUCKER.getValue()) {
             dicePattern =  SpecialDicePattern.PATTERN_BUDDY_FUCKER;
             everyoneLossScore(playerList);
@@ -27,7 +29,7 @@ public class DiceServiceImpl implements DiceService {
             dicePattern = SpecialDicePattern.PATTERN_NOTHING;
         }
 
-        System.out.println("pattern: "+ dicePattern.getName() +", value: "+ dicePattern.getValue() +"\n");
+        playerList.get(currentIdx).setPatternName(dicePattern.getName());
     }
 
     @Override
@@ -35,11 +37,13 @@ public class DiceServiceImpl implements DiceService {
         final int LOSS_SCORE = 2;
 
         for(int i=0; i<playerList.size(); i++) {
-            int totalScore = playerList.get(i).getTotalDiceScore();
+            if(!playerIsAlive(playerList, i)) continue;
 
+            int totalScore = playerList.get(i).getTotalDiceScore();
             if(totalScore - LOSS_SCORE > 0) { totalScore -= LOSS_SCORE; }
             else { totalScore = 0; }
 
+            playerList.get(i).setCalculate("-2");
             playerList.get(i).setTotalDiceScore(totalScore);
         }
     }
@@ -47,17 +51,21 @@ public class DiceServiceImpl implements DiceService {
     @Override
     public void stealEachPlayerScore(List<Player> playerList, int currentIdx) {
         int myDiceNumber = playerList.get(currentIdx).getTotalDiceScore();
+        int before = myDiceNumber;
 
         for (int i=0; i<playerList.size(); i++) {
-            if (i == currentIdx) { continue; }
+            if(!playerIsAlive(playerList, i)) continue;
 
             int targetDiceNumber = playerList.get(i).getTotalDiceScore();
 
             int stealNumber = howMuchCanWeSteal(targetDiceNumber);
             myDiceNumber += stealNumber;
+            playerList.get(i).setCalculate("-"+ stealNumber);
             playerList.get(i).setTotalDiceScore(targetDiceNumber - stealNumber);
         }
+        int after = myDiceNumber;
 
+        playerList.get(currentIdx).setCalculate("+"+ String.valueOf(after - before));
         playerList.get(currentIdx).setTotalDiceScore(myDiceNumber);
     }
 
@@ -79,8 +87,9 @@ public class DiceServiceImpl implements DiceService {
     private void doDonate (int myDiceNumber, List<Player> playerList, int currentIdx) {
         final int DONATE_SCORE = 2;
 
+        int minusDonationValue = 0;
         for (int i=0; i<playerList.size(); i++) {
-            if (i == currentIdx) { continue; }
+            if(!playerIsAlive(playerList, i) || i == currentIdx) continue;
 
             int targetTotalScore = playerList.get(i).getTotalDiceScore();
             int donationValue = 0;
@@ -97,14 +106,22 @@ public class DiceServiceImpl implements DiceService {
                 myDiceNumber = 0;
             }
 
+            playerList.get(i).setCalculate("+"+ String.valueOf(donationValue));
             playerList.get(i).setTotalDiceScore(targetTotalScore + donationValue);
+
+            minusDonationValue += donationValue;
             playerList.get(currentIdx).setTotalDiceScore(myDiceNumber);
         }
+        playerList.get(currentIdx).setCalculate("-" + minusDonationValue);
     }
 
     @Override
     public void killPlayer(List<Player> playerList, int currentIdx) {
         playerList.get(currentIdx).setAlive(false);
+    }
+
+    public boolean playerIsAlive(List<Player> playerList, int currentIdx) {
+        return playerList.get(currentIdx).isAlive() ? true : false;
     }
 
 }
