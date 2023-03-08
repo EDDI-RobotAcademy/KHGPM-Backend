@@ -13,20 +13,15 @@ import java.util.List;
 @RequestMapping("/board")
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class BoardController {
-
     final private BoardService boardService;
-
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
     }
-
     @PostMapping("/register")
     public void boardRegister (@RequestBody BoardRequest boardRequest) {
         log.info("boardRegister()");
-
         boardService.register(boardRequest);
     }
-
     @GetMapping("/list")
     public List<Board> boardList () {
         log.info("boardList()");
