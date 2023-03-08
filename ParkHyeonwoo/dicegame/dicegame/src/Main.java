@@ -26,6 +26,9 @@ public class Main {
         System.out.println(playerList);
 
         playerService.playDiceGame(playerList);
+        Player winner = playerService.findWinner(playerList);
+
+        System.out.println("winner: " + winner);
     }
 
     public static void addPlayer(List<Player> playerList, Player player) {
