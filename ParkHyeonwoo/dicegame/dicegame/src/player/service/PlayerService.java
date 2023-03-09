@@ -5,5 +5,6 @@ import player.Player;
 import java.util.List;
 
 public interface PlayerService {
-    public Boolean playDiceGame(List<Player> playerList);
+    public void playDiceGame(List<Player> playerList);
+    public Player findWinner(List<Player> playerList);
 }
