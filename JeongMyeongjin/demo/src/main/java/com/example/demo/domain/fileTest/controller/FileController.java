@@ -25,6 +25,8 @@ public class FileController {
             @RequestPart(value = "fileList") List<MultipartFile> fileList,
             @RequestPart(value = "info") RequestFileInfo info) {
 
+        log.info("글자 출력: " + info);
+
         try {
             for (MultipartFile multipartFile: fileList) {
                 log.info("requestFileUploadWithText() - filename: " + multipartFile.getOriginalFilename());
