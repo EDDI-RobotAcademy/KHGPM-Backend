@@ -30,7 +30,7 @@ public class FileController {
                 log.info("requestFileUploadWithText() - filename: " + multipartFile.getOriginalFilename());
 
                 FileOutputStream writer = new FileOutputStream(
-                        "../../KHGPM-Frontend/LeeSanghoon/frontend/src/assets/uploadImgs/" +
+                        "../../../KHGPM-Frontend/JongInHan/frontend/src/assets/uploadImgs/" +
                                 multipartFile.getOriginalFilename()
                 );
 
