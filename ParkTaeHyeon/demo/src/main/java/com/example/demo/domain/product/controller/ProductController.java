@@ -1,11 +1,8 @@
-package com.example.demo.domain.board.controller;
+package com.example.demo.domain.product.controller;
 
-import com.example.demo.domain.board.controller.request.BoardRequest;
-import com.example.demo.domain.board.controller.request.ProductRequest;
-import com.example.demo.domain.board.entity.Board;
-import com.example.demo.domain.board.entity.Product;
-import com.example.demo.domain.board.service.BoardService;
-import com.example.demo.domain.board.service.ProductService;
+import com.example.demo.domain.product.controller.request.ProductRequest;
+import com.example.demo.domain.product.entity.Product;
+import com.example.demo.domain.product.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
