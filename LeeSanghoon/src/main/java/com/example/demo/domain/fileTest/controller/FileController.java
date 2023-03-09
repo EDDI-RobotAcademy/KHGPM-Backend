@@ -15,7 +15,6 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/file")
-@RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class FileController {
 
@@ -25,10 +24,14 @@ public class FileController {
             @RequestPart(value = "fileList") List<MultipartFile> fileList,
             @RequestPart(value = "info") RequestFileInfo info) {
 
+        log.info("글자 출력: " + info);
+
         try {
             for (MultipartFile multipartFile: fileList) {
                 log.info("requestFileUploadWithText() - filename: " + multipartFile.getOriginalFilename());
 
+                // 사용자 계정 이름마다 별도로 사진을 배치하게 구성
+                // 등록한 시간을 파일명 어딘가에 붙여서 파일을 저장
                 FileOutputStream writer = new FileOutputStream(
                         "../../KHGPM-Frontend/LeeSanghoon/frontend/src/assets/uploadImgs/" +
                                 multipartFile.getOriginalFilename()

@@ -21,7 +21,7 @@ public class Player implements Comparable<Player>{
             this.specialDice = new Dice(0);
         }
         isAlive = true;
-        totalDiceScore = getGeneralDiceNumber() + getSpecialDiceNumber();
+//        totalDiceScore = getGeneralDiceNumber() + getSpecialDiceNumber();
     }
 
 
