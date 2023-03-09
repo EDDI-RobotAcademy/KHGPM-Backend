@@ -1,10 +1,9 @@
 package com.example.demo.board.controller;
 
+import com.example.demo.board.controller.request.BoardRequest;
 import com.example.demo.board.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -16,5 +15,12 @@ public class BoardController {
 
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
+    }
+
+    @PostMapping("/register")
+    public void boardRegister(@RequestBody BoardRequest boardRequest) {
+        log.info("boardRegister");
+
+        boardService.register(boardRequest);
     }
 }
