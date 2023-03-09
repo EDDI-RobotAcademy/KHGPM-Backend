@@ -1,4 +1,4 @@
-package com.example.demo.domain.board.controller.request;
+package com.example.demo.domain.product.controller.request;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

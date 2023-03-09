@@ -1,8 +1,9 @@
-package com.example.demo.domain.board.service;
+package com.example.demo.domain.product.service;
 
-import com.example.demo.domain.board.controller.request.ProductRequest;
-import com.example.demo.domain.board.entity.Product;
-import com.example.demo.domain.board.repository.ProductRepository;
+import com.example.demo.domain.product.controller.request.ProductRequest;
+import com.example.demo.domain.product.entity.Product;
+import com.example.demo.domain.product.repository.ProductRepository;
+import com.example.demo.domain.product.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
