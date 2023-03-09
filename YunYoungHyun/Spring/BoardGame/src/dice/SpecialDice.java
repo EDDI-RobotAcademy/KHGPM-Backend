@@ -18,7 +18,6 @@ public class SpecialDice {
         this.diceNumber = CustomRandom.createCustomRandom(MIN, MAX);
 
         SpecialDicePattern[] patterns = SpecialDicePattern.values();
-        System.out.println(Arrays.toString(patterns));
         specialDicePattern = Arrays.stream(patterns).filter(elem -> elem.getValue() == diceNumber).
                 findAny().orElse(SpecialDicePattern.PATTERN_NOTHING);
     }

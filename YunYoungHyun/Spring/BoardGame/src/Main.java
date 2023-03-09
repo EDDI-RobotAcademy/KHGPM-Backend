@@ -23,12 +23,15 @@ public class Main {
 
             addPlayer(playerList, player);
         }
-        System.out.println(playerList);
 
         playerService.playDiceGame(playerList);
-        Player winner = playerService.findWinner(playerList);
 
-        System.out.println("winner: "+ winner);
+        Player winner = playerService.findWinner(playerList);
+        if(winner == null) {
+            System.out.println("우승자는 없습니다.");
+        } else {
+            System.out.println("우승자는 플레이어" + winner.getPlayerId() + " 입니다!");
+        }
 
         SpecialDice sd = new SpecialDice();
     }
