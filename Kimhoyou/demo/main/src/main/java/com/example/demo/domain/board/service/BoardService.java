@@ -15,6 +15,4 @@ public interface BoardService {
     void remove(Long boardId);
 
     Board modify(Long boardId, BoardRequest boardRequest);
-
-    List<Board> bigMisstake(Long boardId, BoardRequest boardRequest);
 }
