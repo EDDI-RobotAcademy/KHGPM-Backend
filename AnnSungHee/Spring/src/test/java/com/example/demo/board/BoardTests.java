@@ -15,7 +15,6 @@ public class BoardTests {
 
     @Test
     public void 게시물_저장_테스트() {
-
         BoardRequest boardRequest =
                 new BoardRequest("이거", "정말", "되냐");
 
@@ -47,5 +46,10 @@ public class BoardTests {
     public void 게시물_삭제_테스트 () {
         boardService.remove(14L);
         boardService.read(14L);
+    }
+
+    @Test
+    public void 현재_게시물의_개수 () {
+        System.out.println(boardService.getCount());
     }
 }
