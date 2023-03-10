@@ -19,4 +19,6 @@ public interface BoardService {
     List<Board> bigMisstake(Long boardId, BoardRequest boardRequest);
 
     Long getCount();
+
+    Long getLastEntityId();
 }
