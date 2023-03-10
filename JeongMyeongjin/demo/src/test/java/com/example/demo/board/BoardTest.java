@@ -60,21 +60,22 @@ public class BoardTest {
     @Test
     public void 게시판_구동_전체_테스트 () {
         BoardRequest boardRequest =
-                new BoardRequest("이거", "정말", "되냐");
-        boardService.register(boardRequest);
-        Long lastBoardId = boardService.getLastEntityId();
+                new BoardRequest("타이틀", "작성자", "내용");
+        Long boardId = boardService.register(boardRequest);
 
-        System.out.println("초기 등록: " + boardService.read(lastBoardId));
+        System.out.println("초기 등록: " + boardService.read(boardId));
 
-        boardService.modify(lastBoardId, new BoardRequest(
-                "뭐야", "왜", "변경하니 ?"));
+        boardService.modify(boardId, new BoardRequest(
+                "타이틀 수정", "작성자 수정", "내용 수정"));
 
-        System.out.println("수정 후: " + boardService.read(lastBoardId));
+        System.out.println("수정 후: " + boardService.read(boardId));
 
-        boardService.remove(lastBoardId);
+        boardService.remove(boardId);
 
-        System.out.println("삭제 후: " + boardService.read(lastBoardId));
+        System.out.println("삭제 후: " + boardService.read(boardId));
     }
+
+
 
 
 }
