@@ -47,4 +47,9 @@ public class BoardTests {
         boardService.remove(14L);
         boardService.read(14L);
     }
+
+    @Test
+    public void 현재_게시물의_개수 () {
+        System.out.println(boardService.getCount());
+    }
 }
