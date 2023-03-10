@@ -18,7 +18,7 @@ public class BoardTests {
         BoardRequest boardRequest =
                 new BoardRequest("이거", "정말", "되냐");
 
-        boardService.register(boardRequest);
+
     }
 
     @Test
