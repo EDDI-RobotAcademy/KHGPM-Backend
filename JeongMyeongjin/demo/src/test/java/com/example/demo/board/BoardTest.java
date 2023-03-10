@@ -47,5 +47,10 @@ public class BoardTest {
         boardService.read(5L);
     }
 
+    @Test
+    public void 현재_게시물의_개수 () {
+        System.out.println(boardService.getCount());
+    }
+
 
 }
