@@ -72,4 +72,15 @@ public class BoardServiceImpl implements BoardService {
 
         return board;
     }
+
+    @Override
+    public Long getCount() {
+        return boardRepository.countBy();
+    }
+
+    @Override
+    public Long getLastEntityId() {
+        Board board = boardRepository.findFirstByOrderByBoardIdDesc();
+        return board.getBoardId();
+    }
 }
