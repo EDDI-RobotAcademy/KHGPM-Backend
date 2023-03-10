@@ -55,20 +55,19 @@ public class BoardTests {
     @Test
     public void 게시판_구동_전체_테스트 () {
         BoardRequest boardRequest =
-                new BoardRequest("이거", "정말", "되냐");
-        boardService.register(boardRequest);
+                new BoardRequest("test", "test", "test");
+        Long addId = boardService.register(boardRequest);
         // 애초에 register 할 때 void 가 아닌 boardId 값을 반환하였으면 더 편리했을 것임
-        Long lastBoardId = boardService.getLastEntityId();
 
-        System.out.println("초기 등록: " + boardService.read(lastBoardId));
+        System.out.println("초기 등록: " + boardService.read(addId));
 
-        boardService.modify(lastBoardId, new BoardRequest(
-                "뭐야", "왜", "변경하니 ?"));
+        boardService.modify(addId, new BoardRequest(
+                "test1", "test1", "test1"));
 
-        System.out.println("수정 후: " + boardService.read(lastBoardId));
+        System.out.println("수정 후: " + boardService.read(addId));
 
-        boardService.remove(lastBoardId);
+        boardService.remove(addId);
 
-        System.out.println("삭제 후: " + boardService.read(lastBoardId));
+        System.out.println("삭제 후: " + boardService.read(addId));
     }
 }
