@@ -76,4 +76,9 @@ public class BoardServiceImpl implements BoardService {
     public Long getCount() {
         return boardRepository.countBy();
     }
+
+    public Long getLastEntityId() {
+        Board board = boardRepository.findFirstByOrderByBoardIdDesc();
+        return board.getBoardId();
+    }
 }

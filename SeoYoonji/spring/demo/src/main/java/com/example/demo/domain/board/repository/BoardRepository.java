@@ -6,5 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface BoardRepository extends JpaRepository<Board, Long> {
                          // <Entity 클래스명, Entity 클래스의 PK 자료형>
     Long countBy();
+
+    Board findFirstByOrderByBoardIdDesc();
 }
 
