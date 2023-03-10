@@ -42,4 +42,29 @@ public class BoardTests {
         System.out.println("게시물_삭제_테스트: "+ boardService.read(2L));
     }
 
+    @Test
+    public void 현재_게시물_개수() {
+        System.out.println("현재_게시물_개수: "+ boardService.getCount());
+    }
+
+    @Test
+    public void 마지막_엔티티_id번호(){
+        System.out.println(boardService.getLastEntityId());
+    }
+
+    @Test
+    public void 게시물_구동_전체_테스트() {
+        BoardRequest boardRequest = new BoardRequest("이거", "정말", "되냐");
+        boardService.register(boardRequest);
+        Long lastBoardId = boardService.getLastEntityId();
+
+        System.out.println("초기 등록: "+ boardService.read(lastBoardId));
+
+        Board board = boardService.modify(lastBoardId, new BoardRequest("뭐야", "왜", "변경하니 ?"));
+        System.out.println("수정 후: "+ boardService.read(lastBoardId));
+
+        boardService.remove(lastBoardId);
+        System.out.println("삭제 후: "+ boardService.read(lastBoardId));
+    }
+
 }

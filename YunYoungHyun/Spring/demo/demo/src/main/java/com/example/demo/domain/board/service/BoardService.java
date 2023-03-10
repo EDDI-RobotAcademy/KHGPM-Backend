@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BoardService {
 
-    public void register(BoardRequest boardRequest);
+    public Board register(BoardRequest boardRequest);
 
     List<Board> list();
 
@@ -17,4 +17,7 @@ public interface BoardService {
 
     Board modify(Long boardId, BoardRequest boardRequest);
 
+    Long getCount();
+
+    Long getLastEntityId();
 }
