@@ -73,4 +73,9 @@ public class BoardServiceImpl implements BoardService {
     public List<Board> bigMisstake(Long boardId, BoardRequest boardRequest) {
         return boardRepository.findByBoardIdAndWriter(boardId, boardRequest.getWriter());
     }
+
+    @Override
+    public Long getCount() {
+        return boardRepository.countBy();
+    }
 }
