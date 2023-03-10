@@ -15,4 +15,6 @@ public interface BoardService {
     void remove(Long boardId);
 
     Board modify(Long boardId, BoardRequest boardRequest);
+
+    Long getCount();
 }

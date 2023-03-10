@@ -32,10 +32,18 @@ public class BoardTests {
     public void 게시물_수정_테스트() {
         Board board = boardService.modify(4L, new BoardRequest(
                 "게시글변경", "테스트", "잘되나"));
+
+        System.out.println(board);
     }
 
+    @Test
     public void 게시물_삭제_테스트 () {
         boardService.remove(3L);
         boardService.read(3L);
+    }
+
+    @Test
+    public void 현재_게시물_개수 () {
+        System.out.println(boardService.getCount());
     }
 }
