@@ -24,13 +24,20 @@ public class BoardServiceImpl implements BoardService {
 //    }
 
     @Override
-    public void register(BoardRequest boardRequest) {
-        Board board = new Board();
+    public Board register(BoardRequest boardRequest) {
+        Long lastBoardId = this.getLastEntityId();
+
+        Optional<Board> maybeBoard = boardRepository.findById(lastBoardId);
+
+        Board board = maybeBoard.get();
         board.setTitle(boardRequest.getTitle());
         board.setWriter(boardRequest.getWriter());
         board.setContent(boardRequest.getContent());
 
         boardRepository.save(board);
+
+        return board;
+
     }
     @Override
     public List<Board> list() {
