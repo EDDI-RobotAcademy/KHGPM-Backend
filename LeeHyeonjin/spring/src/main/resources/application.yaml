@@ -1,0 +1,20 @@
+server:
+  port: 7777
+
+spring:
+  datasource:                         #스키마
+    url: jdbc:mysql://localhost:3306/jpa_test?allowpublickeyretrieval=true&usessl=false&serverTimezone=UTC
+    username: eddi
+    password: eddi@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    dialect: org.hibernate.dialect.MySQL8Dialect
+# jpa가 mysql을 사용합니다.
+  jpa:
+    open-in-view: false
+    database: mysql
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+#      기존의 db(테이블)을 새로 생성하고 싶을 때 create
+

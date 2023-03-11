@@ -1,0 +1,561 @@
+[33mcommit cb9290e358a3059fabb66654f69e17dfd8deda52[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: hjlee5701 <hjlee5701@gmail.com>
+Date:   Fri Mar 3 16:19:40 2023 +0900
+
+    feat: 커스텀 랜덤 유틸리티 [DICE-GAME-2]
+
+[33mcommit 35ed3c3380c3099a2b52a8415a075fea7a6a61da[m
+Author: hjlee5701 <hjlee5701@gmail.com>
+Date:   Thu Mar 2 21:43:38 2023 +0900
+
+    spring...
+
+[33mcommit d06fed720995fe933af66c54e95764259c4a7505[m
+Author: hjlee5701 <hjlee5701@gmail.com>
+Date:   Thu Mar 2 21:42:21 2023 +0900
+
+    init: 저장소 초기화 [DICE-GAME]
+
+[33mcommit e7b59f258d952800636dcc5155b21744cdb121aa[m
+Author: hjlee5701 <hjlee5701@gmail.com>
+Date:   Thu Mar 2 21:41:11 2023 +0900
+
+    init 저장소
+
+[33mcommit 169a36d8be1973d69ac3b5f9668087c81133066c[m
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 21:35:43 2023 +0900
+
+    Delete yuri.txt
+
+[33mcommit 1aa9f7354d7ffd3c7abf0eb3e5eb5d74c98f3f3a[m
+Merge: ff44b3a 49e4724
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 21:35:15 2023 +0900
+
+    Merge pull request #41 from yuri6678/main
+    
+    init:[김유리]저장소초기화
+
+[33mcommit ff44b3a774d0d1a66560957adfae3176618e456e[m
+Merge: 6ab9332 dad4d4f
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 21:35:00 2023 +0900
+
+    Merge pull request #40 from namm09155/main
+    
+    init : [남채율] 저장소초기화
+
+[33mcommit 6ab9332560a6172db850940be587862821b95028[m
+Merge: 6e53873 2dc247d
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 21:34:43 2023 +0900
+
+    Merge pull request #39 from voo73/main
+    
+    init:[김다연] 저장소 초기화
+
+[33mcommit 6e538736124951110416993236b25cd261e25cb4[m
+Merge: 592b904 1fb01f8
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 21:34:15 2023 +0900
+
+    Merge pull request #38 from leejeongwoogithub/main
+    
+    init: [이정우]저장소 초기화
+
+[33mcommit 592b904ab0a3c5f435b3c455a035c12045b5b930[m
+Merge: 83f58cb 5f5f76e
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 21:33:44 2023 +0900
+
+    Merge pull request #37 from JinwooMa/main
+    
+    init:[마진우] 테스트
+
+[33mcommit 83f58cbd1d82c6c04b85a962ba394d51de4545ba[m
+Merge: 50de710 f4a4918
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 21:33:20 2023 +0900
+
+    Merge pull request #36 from vceqiv09/main
+    
+    fix:[윤영현] port 번호 수정, 한글깨짐 해결(인코딩 UTF-8로 수정)
+
+[33mcommit 50de7106006101f2429e09248d77f55ae73e630d[m
+Merge: 11e3f93 96933d6
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 21:33:07 2023 +0900
+
+    Merge pull request #35 from Fromredtoviolet/main
+    
+    깃허브데스크탑 연동 테스트
+
+[33mcommit 11e3f931459b895ef3542e71743a65221d012a7b[m
+Merge: d1dd43b 5d55d09
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 21:32:40 2023 +0900
+
+    Merge pull request #33 from jihyunkim0/main
+    
+    init: [김지현] 저장소 초기화
+
+[33mcommit d1dd43b652829a4ec60edbdf23a1ae2e9feedd92[m
+Merge: 8924018 9eeccf3
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 21:32:08 2023 +0900
+
+    Merge pull request #32 from AnnSungHee/main
+    
+    init: [안성희] 테스트입니다.
+
+[33mcommit 49e472470f897eaf433da200e216805e3f37de9e[m
+Author: yuri6678 <yr669078@gmail.com>
+Date:   Mon Feb 27 20:29:40 2023 +0900
+
+    init:[김유리]저장소초기화
+
+[33mcommit dad4d4f24b09766ceb64730ba83f9711b6357c99[m
+Merge: a16217d 8924018
+Author: namm09155 <125858580+namm09155@users.noreply.github.com>
+Date:   Mon Feb 27 20:16:20 2023 +0900
+
+    Merge branch 'main' of https://github.com/namm09155/KHGPM-Backend
+
+[33mcommit a16217d7ecb7baea32c33aa5eb8d0d0e2492008f[m
+Author: namm09155 <125858580+namm09155@users.noreply.github.com>
+Date:   Mon Feb 27 20:15:53 2023 +0900
+
+    init: [남채율] 저장소초기화
+
+[33mcommit 5d55d09b87dc292c325848883670a7e639662a3b[m
+Merge: d4fbd0b 8924018
+Author: jihyunkim0 <60856927+jihyunkim0@users.noreply.github.com>
+Date:   Mon Feb 27 20:13:37 2023 +0900
+
+    Merge branch 'EDDI-RobotAcademy:main' into main
+
+[33mcommit 96933d62bc82162154b596c65a845c75d1e4f21d[m
+Merge: 2325d5d 8924018
+Author: Fromredtoviolet <115058623+Fromredtoviolet@users.noreply.github.com>
+Date:   Mon Feb 27 20:10:51 2023 +0900
+
+    Merge branch 'EDDI-RobotAcademy:main' into main
+
+[33mcommit 5f5f76ebdfbc8cfd9f1c20631f40fc8d9eab02ba[m
+Merge: b399fb4 8924018
+Author: JinwooMa <125858213+JinwooMa@users.noreply.github.com>
+Date:   Mon Feb 27 20:09:10 2023 +0900
+
+    Merge branch 'EDDI-RobotAcademy:main' into main
+
+[33mcommit f4a49185a43b199f3cb5f62d05c151b02467554f[m
+Merge: ef0bb6c 8924018
+Author: vceqiv09 <114986057+vceqiv09@users.noreply.github.com>
+Date:   Mon Feb 27 20:08:54 2023 +0900
+
+    Merge branch 'EDDI-RobotAcademy:main' into main
+
+[33mcommit 9eeccf3b5446a6dbacccf1f1732c72e6b006bcb7[m
+Merge: f5a6d43 8924018
+Author: AnnSungHee <125858475+AnnSungHee@users.noreply.github.com>
+Date:   Mon Feb 27 20:08:43 2023 +0900
+
+    Merge branch 'EDDI-RobotAcademy:main' into main
+
+[33mcommit 8924018f054874692f8f38671648d2094f2f8294[m
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 20:08:12 2023 +0900
+
+    Update .gitignore
+
+[33mcommit b399fb4b0c9e83f871d05c08d45997d74aa2ec72[m
+Author: JinwooMa <akwls72@gmail.com>
+Date:   Mon Feb 27 20:07:20 2023 +0900
+
+     init: [마진우] 저장소 수정
+
+[33mcommit 2dc247ded7b1da7fa5061a96b355ace8f49c9f4c[m
+Author: voo73 <voock9@gmail.com>
+Date:   Mon Feb 27 20:06:15 2023 +0900
+
+    init:[김다연] 저장소 초기화
+
+[33mcommit 1fb01f86e626cf9090a299d4b2da435aa2ce0617[m
+Author: jeongwoogithub <leejeongpop@gmail.com>
+Date:   Mon Feb 27 19:48:51 2023 +0900
+
+    init: [이정우]저장소 초기화
+
+[33mcommit a922edd6549fbf5d58583073eadee55c21a62f06[m
+Author: JinwooMa <akwls72@gmail.com>
+Date:   Mon Feb 27 19:44:36 2023 +0900
+
+    init:[마진우] 테스트
+
+[33mcommit f5a6d43713e0f777f5a1caf767d5842b6c297d74[m
+Author: AnnSungHee <d980104@gmail.com>
+Date:   Mon Feb 27 19:44:26 2023 +0900
+
+    init: [안성희] 초기 스프링 파일 생성
+
+[33mcommit ef0bb6cf7f1b30fd2c198861b12eab35f58473a3[m
+Author: vceqiv09 <vceqiv@gmail.com>
+Date:   Mon Feb 27 19:44:19 2023 +0900
+
+    fix:[윤영현] port 번호 수정, 인코딩 UTF-8로 수정
+
+[33mcommit d4fbd0babca469fe1b759e591b8d8216f0d3317d[m
+Author: jihyunkim0 <60856927+jihyunkim0@users.noreply.github.com>
+Date:   Mon Feb 27 19:40:27 2023 +0900
+
+    init: 저장소 초기화
+
+[33mcommit 2325d5d77027fff947a9c72e53f403fb31276e79[m
+Author: Fromredtoviolet <aprilartists@gmail.com>
+Date:   Mon Feb 27 19:39:46 2023 +0900
+
+    깃허브데스크탑 연동 테스트
+    
+    깃허브데스크탑 백엔드 연동 테스트
+
+[33mcommit b318ceda650b1bde83f4787418056a43664b989b[m
+Author: AnnSungHee <d980104@gmail.com>
+Date:   Mon Feb 27 19:37:28 2023 +0900
+
+    init: [안성희] 테스트입니다.
+
+[33mcommit b421f7e316209f3ff7150bcba1fc83951777f4bd[m
+Merge: 9fabfb8 05f7605
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 19:34:49 2023 +0900
+
+    Merge pull request #31 from gomgomehoya/main
+    
+    init:[김호유]커밋 테스트
+
+[33mcommit 9fabfb80d1272ddce27d5acd7a8ca58b2ce44e33[m
+Merge: d01abae cc4736a
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 19:34:32 2023 +0900
+
+    Merge pull request #30 from JinwooMa/main
+    
+    init:[마진우] 테스트
+
+[33mcommit d01abae2321189fa0830fbcb495b8b638841a773[m
+Merge: 6f6da5e cb7f916
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 19:34:18 2023 +0900
+
+    Merge pull request #29 from dduru-nuna/main
+    
+    inti: [서윤지] 저장소 초기화
+
+[33mcommit 6f6da5edbaf6a6130d3bba54b44a1c4bfb615d92[m
+Merge: f5a5e76 0a3a479
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 19:33:55 2023 +0900
+
+    Merge pull request #28 from hjlee5701/main
+    
+    feat:[이현진] PR 테스트
+
+[33mcommit f5a5e76f5cb74c10318d75904fdd9ab72a22b923[m
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 19:33:07 2023 +0900
+
+    remove: 저장소 정리
+
+[33mcommit 05f7605c2b6e5fd0e978e4200efb59436946c009[m
+Author: gomgomehoya <gomgomehoya@gmail.com>
+Date:   Mon Feb 27 19:07:11 2023 +0900
+
+    test
+
+[33mcommit cc4736a5f7d1fd031e2f0982c813b326bae2ca2c[m
+Author: JinwooMa <akwls72@gmail.com>
+Date:   Mon Feb 27 18:18:07 2023 +0900
+
+    init:[마진우] 테스트
+
+[33mcommit cb7f916f55b833ed817de3edcac86c50e097d704[m
+Author: dduru-nuna <syj00062@gmail.com>
+Date:   Mon Feb 27 18:14:00 2023 +0900
+
+    inti: [서윤지] 저장소 초기화
+
+[33mcommit 0a3a47971cdfdbe642a97cdbb34047a1c3414329[m
+Merge: 7bdc389 e1a53d7
+Author: hjlee5701 <hjlee5701@gmail.com>
+Date:   Mon Feb 27 18:07:58 2023 +0900
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 7bdc38988b36e903c62bd70e9cd363bdf123ad38[m
+Author: hjlee5701 <hjlee5701@gmail.com>
+Date:   Mon Feb 27 18:07:26 2023 +0900
+
+    feat:[이현진] 테스트중
+
+[33mcommit 7220c5e5ee2629d3cae92c6bb428140cc39f33ad[m
+Author: hjlee5701 <hjlee5701@gmail.com>
+Date:   Mon Feb 27 18:06:27 2023 +0900
+
+    Update DemoApplication.java
+    
+    feat:[이현진] 테스트
+
+[33mcommit e1a53d77e7c7b2ba04784e626d15aa8a96becb8f[m
+Merge: f9bc3a7 f2db11a
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:57:48 2023 +0900
+
+    Merge pull request #27 from Castleyear/main
+    
+    init:[김성연] BoardGame과제 제출 (수정)
+
+[33mcommit f2db11aa4920ccf637052a871d1a314220401eca[m
+Author: Castleyear <ksy48562@gmail.com>
+Date:   Mon Feb 27 16:52:58 2023 +0900
+
+    init:[김성연] BoardGame과제 제출 (수정)
+
+[33mcommit f9bc3a7c42a0a8902ea8fd0388b2d6b349605b7e[m
+Merge: 4f14492 01842d5
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:37:34 2023 +0900
+
+    Merge pull request #26 from jonginhan/main
+    
+    init 한종인 숙제제출
+
+[33mcommit 4f1449268b82565e53e5584021506f9398d8d0ef[m
+Merge: 6eae39f b01a769
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:23:27 2023 +0900
+
+    Merge pull request #25 from yongjin217/main
+    
+     init: [윤용진] EmitTestBoardGame homework
+
+[33mcommit 6eae39f743a4a7f7f45a73511242a851b3798d3b[m
+Merge: fe08ee7 99adea3
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:23:10 2023 +0900
+
+    Merge pull request #24 from MDandersonm/main
+    
+    init : [김 영 진] commit test
+
+[33mcommit fe08ee7d43a5614b197ca46760d357151bae8e9a[m
+Merge: d63e849 41ab298
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:22:21 2023 +0900
+
+    Merge pull request #23 from Cong0327/main
+    
+    init: [박현수] commit Test
+
+[33mcommit 01842d5b40a8286b704c1432a73964c129df3fe1[m
+Author: jonginhan <instantgogo@gmail.com>
+Date:   Mon Feb 27 16:20:13 2023 +0900
+
+    init 한종인 숙제제출
+
+[33mcommit d63e849fdf9db88abe0f2eedde7d06dfe5316ab0[m
+Merge: d1cfc74 c2f561c
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:19:31 2023 +0900
+
+    Merge pull request #20 from yuri6678/main
+    
+    repo test[김유리]
+
+[33mcommit d1cfc74b5b57dd6bef7358beb72714da98487275[m
+Merge: 8e7f306 ca29da7
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:16:25 2023 +0900
+
+    Merge pull request #17 from zinif0607/main
+    
+    [황동희] 첫번째 커밋테스트
+
+[33mcommit 8e7f3062ccb02418490965fee1523c61b0913bfc[m
+Merge: 014922d b7246b8
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:15:03 2023 +0900
+
+    Merge pull request #16 from taylor930422/main
+    
+    init: [박태현] commit test using git bash for homework
+
+[33mcommit 014922d7993990b4b61efa3d15d6b6f74949fbcc[m
+Merge: 6926e8a 1efcdd7
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:14:38 2023 +0900
+
+    Merge pull request #15 from Castleyear/main
+    
+    Sungyeon 과제 제출 테스트 중
+
+[33mcommit 6926e8a89d17c4f57173a94ea04371d42d8cf55e[m
+Merge: 2cb4625 0900d83
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:14:17 2023 +0900
+
+    Merge pull request #14 from Fromredtoviolet/main
+    
+    init: [서예인] repo test
+
+[33mcommit 2cb4625c237cbc8312d5c0c831fc44cbf499ca61[m
+Merge: 5ffa3ae a2cf6eb
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:13:54 2023 +0900
+
+    Merge pull request #13 from voo73/main
+    
+    init: [김다연] repo test
+
+[33mcommit 5ffa3aec0ed3755eb9380e9fa0f738bf3c659fef[m
+Merge: b2781d9 9f14821
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:12:36 2023 +0900
+
+    Merge pull request #12 from vceqiv09/main
+    
+    init:[윤영현] repo test
+
+[33mcommit b2781d98699d1c583abf17ab06921f502b497b54[m
+Merge: 8a22de0 0dd1791
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:12:12 2023 +0900
+
+    Merge pull request #11 from GunhoNam/main
+    
+    남건호 git test
+
+[33mcommit 8a22de0f4f42d42ec0cad69f144e29eef5f84078[m
+Merge: a65e4b9 5fcad46
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:08:03 2023 +0900
+
+    Merge pull request #10 from jonginhan/main
+    
+    한종인 과제 제출
+
+[33mcommit a65e4b9f5c63a75775412b5bebdb59079e8aa6a4[m
+Merge: 9441112 be9282c
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:07:30 2023 +0900
+
+    Merge pull request #8 from dduru-nuna/main
+    
+    init: [서윤지] repo test
+
+[33mcommit 944111217a064b08f9cf99b4f353ee16c70c498b[m
+Merge: b66a4ec 608249e
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:06:45 2023 +0900
+
+    Merge pull request #7 from Hyeonvv/main
+    
+    [박현우] repo
+
+[33mcommit b66a4ec2f826829d4da95eea43e0ccd18094bea4[m
+Merge: 23f4774 867a35f
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:06:01 2023 +0900
+
+    Merge pull request #6 from jmj30040/main
+    
+    init: [정명진] PR test
+
+[33mcommit 23f47748dc6aa2faae123c3db19bf5eb48c036ac[m
+Merge: 7e5e62b fe5daba
+Author: Sanghoon Lee <gcccompil3r@gmail.com>
+Date:   Mon Feb 27 16:05:28 2023 +0900
+
+    Merge pull request #5 from jihyunkim0/main
+    
+    init: [김지현] PR test
+
+[33mcommit 99adea38f49500fd651469ded36a9a96f48ac972[m
+Author: MDandersonm <1215kimyj@gmail.com>
+Date:   Mon Feb 27 15:44:26 2023 +0900
+
+    커밋
+    
+    1
+
+[33mcommit 608249ef36b25548d419a331f345678a58f8c210[m
+Author: Hyeonvv <pphhww5017@gmail.com>
+Date:   Mon Feb 27 15:36:23 2023 +0900
+
+    보드 게임 승자 정보 받아옴
+
+[33mcommit 41ab298f61282b3fb49573e51ab4b826949affbd[m
+Author: Cong0327 <hsp400@gmail.com>
+Date:   Mon Feb 27 14:19:50 2023 +0900
+
+    init: [박현수] Commit Test
+
+[33mcommit ac35c719cf13ce214a8a49a26594106a419ae486[m
+Author: hjlee5701 <hjlee5701@google.com>
+Date:   Mon Feb 27 13:50:38 2023 +0900
+
+    init:[이현진] Vue Spring 연결
+
+[33mcommit 2120119822cc25c99105284e7d12086139dbbe5e[m
+Author: hjlee5701 <hjlee5701@google.com>
+Date:   Mon Feb 27 13:48:19 2023 +0900
+
+    init:[이현진] Vue Spring 연결
+
+[33mcommit fe5daba13dbbb90f53cee8e8d13c3d5c5b3a7afa[m
+Author: jihyunkim0 <60856927+jihyunkim0@users.noreply.github.com>
+Date:   Mon Feb 27 12:07:45 2023 +0900
+
+    [김지현] 과제 제출
+
+[33mcommit 421b58f141a7979fa28c236f3a75fb79290c607f[m
+Author: jihyunkim0 <60856927+jihyunkim0@users.noreply.github.com>
+Date:   Mon Feb 27 11:01:30 2023 +0900
+
+    demo file upload
+
+[33mcommit 867a35f132c4fbd7bed92fa8df09a352d13f28ab[m
+Author: jmj30040 <jmj30040@gmail.com>
+Date:   Mon Feb 27 01:25:40 2023 +0900
+
+    오목 승자 콘솔에 출력하기
+
+[33mcommit 1a65a4b2ef6d99c99029022d667c586b622851dd[m
+Author: Hyeonvv <pphhww5017@gmail.com>
+Date:   Mon Feb 27 00:37:41 2023 +0900
+
+    보드 게임 승자 정보 받아옴
+
+[33mcommit b7246b8b348e5f038d2e573f9afb476cf7138326[m
+Author: taylor930422 <taylor930422@gmail.com>
+Date:   Mon Feb 27 00:12:10 2023 +0900
+
+    init: [박태현] emit-test-game homework
+
+[33mcommit 9f14821038315ef23ac512af5af0710b100e7471[m
+Author: vceqiv09 <vceqiv@gmail.com>
+Date:   Sun Feb 26 20:03:55 2023 +0900
+
+    add:[윤영현] 2차 과제 재업
+
+[33mcommit ab2ff2f84b0b3c51aaf54e3a136911c5d28b30d6[m
+Author: jmj30040 <jmj30040@gmail.com>
+Date:   Sun Feb 26 19:49:08 2023 +0900
+
+    test
+
+[33mcommit 1efcdd77d3decedb4dc897594906d7141b0ea3da[m
+Author: Castleyear <ksy48562@gmail.com>
+Date:   Sun Feb 26 19:45:58 2023 +0900
+
+    Sungyeon Backend 2 과제제출
