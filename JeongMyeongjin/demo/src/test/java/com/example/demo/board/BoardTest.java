@@ -61,7 +61,8 @@ public class BoardTest {
     public void 게시판_구동_전체_테스트 () {
         BoardRequest boardRequest =
                 new BoardRequest("타이틀", "작성자", "내용");
-        Long boardId = boardService.register(boardRequest);
+        Board board = boardService.register(boardRequest);
+        Long boardId = board.getBoardId();
 
         System.out.println("초기 등록: " + boardService.read(boardId));
 
