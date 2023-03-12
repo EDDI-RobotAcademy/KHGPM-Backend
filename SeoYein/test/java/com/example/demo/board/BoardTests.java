@@ -16,9 +16,9 @@ public class BoardTests {
     @Test
     public void 게시물_저장_테스트() {
         BoardRequest boardRequest =
-                new BoardRequest("이거", "정말", "되냐");
-
-        boardService.register(boardRequest);
+                new BoardRequest("제목입니다", "작성자입니다", "내용입니다");
+        Board board = boardService.register(boardRequest);
+        Long lastBoardId= board.getBoardId();
     }
 
     @Test
@@ -29,23 +29,23 @@ public class BoardTests {
     @Test
     public void 게시물_읽기_테스트() {
 
-        Board board = boardService.read(4L);
+        Board board = boardService.read(2L);
         System.out.println(board);
     }
 
     @Test
     public void 게시물_수정_테스트 () {
         // 글 작성자는 바뀌지 않는다
-        Board board = boardService.modify(4L, new BoardRequest(
-                "뭐야", "왜", "변경하니 ?"));
+        Board board = boardService.modify(2L, new BoardRequest(
+                "수정한제목", "수정한작성자", "수정한내용"));
 
         System.out.println(board);
     }
 
     @Test
     public void 게시물_삭제_테스트 () {
-        boardService.remove(4L);
-        boardService.read(4L);
+        boardService.remove(2L);
+        boardService.read(2L);
     }
 
     @Test
@@ -61,14 +61,16 @@ public class BoardTests {
     @Test
     public void 게시판_구동_전체_테스트 () {
         BoardRequest boardRequest =
-                new BoardRequest("이거", "정말", "되냐");
-        boardService.register(boardRequest);
-        Long lastBoardId = boardService.getLastEntityId();
+                new BoardRequest("제목입니다", "작성자입니다", "내용입니다");
+        Board board = boardService.register(boardRequest);
+        Long lastBoardId= board.getBoardId();
+        // Long lastBoardId = boardService.getLastEntityId();
+        // register 실행시 Id를 바로 반환할 수 있도록 구조 변경하도록 하자.
 
         System.out.println("초기 등록: " + boardService.read(lastBoardId));
 
         boardService.modify(lastBoardId, new BoardRequest(
-                "뭐야", "왜", "변경하니 ?"));
+                "수정한제목", "수정한작성자", "수정한내용"));
 
         System.out.println("수정 후: " + boardService.read(lastBoardId));
 
