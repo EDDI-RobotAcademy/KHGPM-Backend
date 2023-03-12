@@ -23,10 +23,11 @@ public class BoardController {
     }
 
     @PostMapping("/register")
-    public void boardRegister (@RequestBody BoardRequest boardRequest) {
+    public Long boardRegister (@RequestBody BoardRequest boardRequest) {
         log.info("boardRegister()");
 
-        boardService.register(boardRequest);
+        Long boardId = boardService.register(boardRequest);
+        return boardId;
     }
 
     @GetMapping("/list")

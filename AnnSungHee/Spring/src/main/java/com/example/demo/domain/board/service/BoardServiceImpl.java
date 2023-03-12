@@ -19,14 +19,14 @@ public class BoardServiceImpl implements BoardService {
     final private BoardRepository boardRepository;
 
     @Override
-    public Board register(BoardRequest boardRequest) {
+    public Long register(BoardRequest boardRequest) {
         Board board = new Board();
         board.setTitle(boardRequest.getTitle());
         board.setWriter(boardRequest.getWriter());
         board.setContent(boardRequest.getContent());
 
         boardRepository.save(board);
-        return board;
+        return board.getBoardId();
     }
 
     @Override
