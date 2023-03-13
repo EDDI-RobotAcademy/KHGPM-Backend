@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Optional;
+
 @SpringBootTest
 public class ClassRoomTest {
 
@@ -26,5 +28,13 @@ public class ClassRoomTest {
 
         testStudent.setClassRoom(classRoom);
         studentRepository.save(testStudent);
+    }
+
+    @Test
+    public void 학생_번호_조회() {
+        Optional<TestStudent> maybeStudent = studentRepository.findById(1L);
+        TestStudent testStudent = maybeStudent.get();
+
+        System.out.println(testStudent);
     }
 }
