@@ -6,6 +6,7 @@ import com.example.demo.domain.board.repository.BoardRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,19 +16,31 @@ import java.util.Optional;
 public class BoardServiceImpl implements BoardService {
 
     final private BoardRepository boardRepository;
+    private BoardServiceImpl boardService;
 
     public BoardServiceImpl(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
-    @Override
-    public void register(BoardRequest boardRequest) {
+    @PostMapping
+    public Board register(BoardRequest boardRequest) {
+
         Board board = new Board();
         board.setTitle(boardRequest.getTitle());
         board.setWriter(boardRequest.getWriter());
         board.setContent(boardRequest.getContent());
 
         boardRepository.save(board);
+        return board;
+    }
+    @Override
+    public Long getCount() {
+        return boardRepository.countBy();
+    }
+    @Override
+    public Long getLastEntityId() {
+        Board board = boardRepository.findFirstByOrderByBoardIdDesc();
+        return board.getBoardId();
     }
 
     @Override
@@ -69,5 +82,6 @@ public class BoardServiceImpl implements BoardService {
 
         return board;
     }
+
 
 }
