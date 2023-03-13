@@ -17,6 +17,6 @@ public class ImageData {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Lob
-    private byte[] data;
+    @Column
+    private String imageData;
 }
