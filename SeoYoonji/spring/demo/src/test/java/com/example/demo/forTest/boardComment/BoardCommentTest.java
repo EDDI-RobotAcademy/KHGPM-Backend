@@ -24,16 +24,16 @@ public class BoardCommentTest {
 
     @Test
     public void 게시물_저장() {
-        TestBoard board = new TestBoard("제목2", "내용2");
+        TestBoard board = new TestBoard("제목3", "내용3");
         testBoardRepository.save(board);
     }
 
     @Test
     public void 덧글_저장() {
-        Optional<TestBoard> mayTestBoard = testBoardRepository.findById(2L);
+        Optional<TestBoard> mayTestBoard = testBoardRepository.findById(3L);
         TestBoard testBoard = mayTestBoard.get();
 
-        Comment comment = new Comment("댓글추가");
+        Comment comment = new Comment("댓글3");
 
         testBoard.setComment(comment);
         testBoardRepository.save(testBoard); //원래있던 게시글에 댓글을 추가한 것이니 '수정' 한거라 볼 수 있음
@@ -49,7 +49,34 @@ public class BoardCommentTest {
         for(Comment comment: commentList) {
             commentResponses.add(new CommentResponse(comment.getContent()));
         }
-        
+
         System.out.println(commentResponses);
+    }
+
+    @Test
+    public void 덧글_수정() {
+        Optional<Comment> maybeComment = commentRepository.findById(2L);
+        Comment comment = maybeComment.get();
+
+        comment.changeContent("수정한다아아");
+        commentRepository.save(comment);
+    }
+
+    @Test
+    public void 덧글_삭제() {
+        commentRepository.deleteById(5L);
+    }
+
+    @Test
+    public void 게시글_삭제() {
+        final Long boardId = 3L;
+        List<Comment> commentList = commentRepository.findAllCommentsByBoardId(boardId);
+
+        for(Comment comment: commentList) {
+            System.out.println("comment내용: " + comment.getContent());
+            commentRepository.delete(comment);
+        }
+
+        testBoardRepository.deleteById(boardId);
     }
 }
