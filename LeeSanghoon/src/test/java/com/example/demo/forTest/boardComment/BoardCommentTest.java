@@ -52,4 +52,13 @@ public class BoardCommentTest {
 
         System.out.println(commentResponses);
     }
+
+    @Test
+    public void 덧글_수정() {
+        Optional<Comment> maybeComment = commentRepository.findById(4L);
+        Comment comment = maybeComment.get();
+
+        comment.changeContent("이러쿵 저러쿵 요러쿵");
+        commentRepository.save(comment);
+    }
 }
