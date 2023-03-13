@@ -1,4 +1,4 @@
-package com.example.demo.domain.forTest.entity;
+package com.example.demo.domain.forTest.board.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
