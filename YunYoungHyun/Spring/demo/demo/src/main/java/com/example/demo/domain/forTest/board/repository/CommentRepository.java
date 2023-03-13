@@ -1,6 +1,6 @@
-package com.example.demo.domain.forTest.repository;
+package com.example.demo.domain.forTest.board.repository;
 
-import com.example.demo.domain.forTest.entity.Comment;
+import com.example.demo.domain.forTest.board.entity.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
