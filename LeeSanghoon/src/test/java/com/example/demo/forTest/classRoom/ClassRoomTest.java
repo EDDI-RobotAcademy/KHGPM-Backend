@@ -62,4 +62,13 @@ public class ClassRoomTest {
         testStudent.setClassRoom(cr);
         studentRepository.save(testStudent);
     }
+
+    @Test
+    public void 삭제() {
+        Optional<TestStudent> maybeStudent = studentRepository.findById(7L);
+        TestStudent testStudent = maybeStudent.get();
+
+        testStudent.setClassRoom(null);
+        studentRepository.delete(testStudent);
+    }
 }
