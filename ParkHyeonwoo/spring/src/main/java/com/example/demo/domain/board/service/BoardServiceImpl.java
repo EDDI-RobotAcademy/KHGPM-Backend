@@ -43,7 +43,9 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public Board read(Long boardId) {
-        // Optional -> 일 수도 있고 아닐 수도 있고
+        // Optional<T>는 null이 올 수 있는 값을 감싸는 Wrapper 클래스
+        // NPE(NullPointerException)가 발생하지 않도록 도와준다
+        // 결과가 null이 될 수 있으며, null에 의해 오류가 발생할 가능성이 매우 높을 때 반환값으로만 사용
         Optional<Board> maybeBoard = boardRepository.findById(boardId);
 
         if(maybeBoard.isEmpty()) {
