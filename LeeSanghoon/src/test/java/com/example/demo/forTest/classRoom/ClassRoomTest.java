@@ -22,7 +22,7 @@ public class ClassRoomTest {
 
     @Test
     public void 학생_정보_저장() {
-        ClassRoom classRoom = new ClassRoom("두번째 클래스");
+        ClassRoom classRoom = new ClassRoom("여긴어디반");
         classRoomRepository.save(classRoom);
 
         TestStudent testStudent = new TestStudent("나는누구");
@@ -49,5 +49,17 @@ public class ClassRoomTest {
     public void 반이름에_따른_학생_조회() {
         List<TestStudent> studentList = studentRepository.findStudentListByRoomName("두번째 클래스");
         System.out.println(studentList);
+    }
+
+    @Test
+    public void 반_변경() {
+        Optional<TestStudent> maybeStudent = studentRepository.findById(9L);
+        TestStudent testStudent = maybeStudent.get();
+
+        ClassRoom cr = new ClassRoom("새로운 반");
+        classRoomRepository.save(cr);
+
+        testStudent.setClassRoom(cr);
+        studentRepository.save(testStudent);
     }
 }
