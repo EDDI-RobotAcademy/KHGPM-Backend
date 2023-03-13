@@ -16,11 +16,15 @@ public class Comment {
 
     private String content;
 
-    @ManyToOne(fetch = FetchType.EAGER) // 각각의 TestBoard를 가르키게 한다.
-    @JoinColumn(name = "board_id")
+    @ManyToOne(fetch = FetchType.EAGER) // N:1, 각각의 TestBoard를 가르킨다.
+    @JoinColumn(name = "board_id") // TestBoard 의 board_id 와 매핑
     private TestBoard testBoard;
 
     public Comment(String content) {
+        this.content = content;
+    }
+    
+    public void changeContent (String content) {
         this.content = content;
     }
 }
