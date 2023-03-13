@@ -61,4 +61,22 @@ public class BoardCommentTest {
         comment.changeContent("댓글 내용 수정");
         commentRepository.save(comment);
     }
+
+    @Test
+    public void 덧글_삭제() {
+        commentRepository.deleteById(5L);
+    }
+
+    @Test
+    public void 게시글_삭제() {
+        final Long boardId = 2L;
+        List<Comment> commentList = commentRepository.findAllCommentsByBoardId(boardId);
+
+        for (Comment comment: commentList) {
+            System.out.println("comment 내용: " + comment.getContent());
+            commentRepository.delete(comment);
+        }
+
+        testBoardRepository.deleteById(boardId);
+    }
 }
