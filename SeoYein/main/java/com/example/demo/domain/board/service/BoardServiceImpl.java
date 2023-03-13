@@ -21,13 +21,14 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void register(BoardRequest boardRequest) {
+    public Board register(BoardRequest boardRequest) {
         Board board = new Board();
         board.setTitle(boardRequest.getTitle());
         board.setWriter(boardRequest.getWriter());
         board.setContent(boardRequest.getContent());
 
         boardRepository.save(board);
+        return board;
     }
 
     @Override
@@ -69,5 +70,16 @@ public class BoardServiceImpl implements BoardService {
         boardRepository.save(board);
 
         return board;
+    }
+
+    @Override
+    public Long getCount() {
+        return boardRepository.countBy();
+    }
+
+    @Override
+    public Long getLastEntityId() {
+        Board board = boardRepository.findFirstByOrderByBoardIdDesc();
+        return board.getBoardId();
     }
 }
