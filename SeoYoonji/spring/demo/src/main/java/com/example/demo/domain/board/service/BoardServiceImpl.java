@@ -3,6 +3,7 @@ package com.example.demo.domain.board.service;
 import com.example.demo.domain.board.controller.request.BoardRequest;
 import com.example.demo.domain.board.entity.Board;
 import com.example.demo.domain.board.repository.BoardRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -12,16 +13,14 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
     final private BoardRepository boardRepository;
 
-    public BoardServiceImpl(BoardRepository boardRepository) {
-        this.boardRepository = boardRepository;
-    }
 
     @Override
-    public void register(BoardRequest boardRequest) {
+    public Board register(BoardRequest boardRequest) {
         Board board = new Board();
         // 요청받은 데이터 값으로 set
         board.setTitle(boardRequest.getTitle());
@@ -30,6 +29,8 @@ public class BoardServiceImpl implements BoardService {
 
         boardRepository.save(board);
         // JpaRepository를 상속받으면 기본적으로 제공하는 메서드 중 하나인 save
+        board = boardRepository.findFirstByOrderByBoardIdDesc();
+        return board;
     }
 
     @Override
@@ -71,5 +72,15 @@ public class BoardServiceImpl implements BoardService {
         boardRepository.save(board);
 
         return board;
+    }
+
+    @Override
+    public Long getCount() {
+        return boardRepository.countBy();
+    }
+
+    public Long getLastEntityId() {
+        Board board = boardRepository.findFirstByOrderByBoardIdDesc();
+        return board.getBoardId();
     }
 }

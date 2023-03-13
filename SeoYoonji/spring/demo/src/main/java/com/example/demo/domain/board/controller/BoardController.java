@@ -21,11 +21,11 @@ public class BoardController {
     }
 
     @PostMapping("/register")
-    public void boardRegister (@RequestBody BoardRequest boardRequest) {
+    public Board boardRegister (@RequestBody BoardRequest boardRequest) {
         //@RequestBody 가 붙은 파라미터에는 http요청의 본문 body가 그대로 전달됨
         log.info("boardRegister()");
 
-        boardService.register(boardRequest);
+        return boardService.register(boardRequest);
     }
 
     @GetMapping("/list")
