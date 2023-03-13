@@ -3,6 +3,7 @@ package com.example.demo.domain.board.service;
 import com.example.demo.domain.board.controller.request.BoardRequest;
 import com.example.demo.domain.board.entity.Board;
 import com.example.demo.domain.board.repository.BoardRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -12,22 +13,20 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
     final private BoardRepository boardRepository;
 
-    public BoardServiceImpl(BoardRepository boardRepository) {
-        this.boardRepository = boardRepository;
-    }
-
     @Override
-    public void register(BoardRequest boardRequest) {
+    public Long register(BoardRequest boardRequest) {
         Board board = new Board();
         board.setTitle(boardRequest.getTitle());
         board.setWriter(boardRequest.getWriter());
         board.setContent(boardRequest.getContent());
 
         boardRepository.save(board);
+        return board.getBoardId();
     }
 
     @Override
@@ -47,6 +46,7 @@ public class BoardServiceImpl implements BoardService {
 
         return maybeBoard.get();
     }
+
     @Override
     public void remove(Long boardId) {
         boardRepository.deleteById(boardId);
@@ -68,5 +68,21 @@ public class BoardServiceImpl implements BoardService {
         boardRepository.save(board);
 
         return board;
+    }
+
+    @Override
+    public List<Board> bigMisstake(Long boardId, BoardRequest boardRequest) {
+        return boardRepository.findByBoardIdAndWriter(boardId, boardRequest.getWriter());
+    }
+
+    @Override
+    public Long getCount() {
+        return boardRepository.countBy();
+    }
+
+    @Override
+    public Long getLastEntityId() {
+        Board board = boardRepository.findFirstByOrderByBoardIdDesc();
+        return board.getBoardId();
     }
 }
