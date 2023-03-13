@@ -30,7 +30,7 @@ public class BoardCommentTest {
 
     @Test
     public void 덧글_저장() {
-        Optional<TestBoard> mayTestBoard = testBoardRepository.findById(2L);
+        Optional<TestBoard> mayTestBoard = testBoardRepository.findById(3L);
         TestBoard testBoard = mayTestBoard.get();
 
         Comment comment = new Comment("시작");
@@ -60,5 +60,23 @@ public class BoardCommentTest {
 
         comment.changeContent("이러쿵 저러쿵 요러쿵");
         commentRepository.save(comment);
+    }
+
+    @Test
+    public void 덧글_삭제() {
+        commentRepository.deleteById(5L);
+    }
+
+    @Test
+    public void 게시글_삭제() {
+        final Long boardId = 3L;
+        List<Comment> commentList = commentRepository.findAllCommentsByBoardId(boardId);
+
+        for (Comment comment: commentList) {
+            System.out.println("comment 내용: " + comment.getContent());
+            commentRepository.delete(comment);
+        }
+
+        testBoardRepository.deleteById(boardId);
     }
 }
