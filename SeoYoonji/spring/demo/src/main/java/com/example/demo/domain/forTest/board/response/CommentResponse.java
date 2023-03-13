@@ -1,4 +1,4 @@
-package com.example.demo.domain.forTest.controller.response;
+package com.example.demo.domain.forTest.board.response;
 
 import lombok.Data;
 
