@@ -19,7 +19,7 @@ public class TestBoard {
     private String title;
     private String content;
 
-    @OneToMany(mappedBy = "testBoard", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "testBoard", fetch = FetchType.EAGER) //testBoard에 comment 맵핑
     private List<Comment> comments = new ArrayList<>();
 
     public TestBoard(String title, String content) {

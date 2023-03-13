@@ -15,7 +15,7 @@ public class Comment {
 
     private String content;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER) //게시글 하나에 댓글 여러개 달 수 있으니 다대일
     @JoinColumn(name = "board_id")
     private TestBoard testBoard;
 
