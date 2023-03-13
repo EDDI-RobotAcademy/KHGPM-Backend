@@ -33,12 +33,15 @@ public class ShopController {
             @RequestParam("price") Integer price,
             @RequestPart(value = "fileList") List<MultipartFile> fileList) throws IOException {
 
-        try {
-            for (MultipartFile multipartFile: fileList) {
+        try {            for (MultipartFile multipartFile: fileList) {
                 log.info("requestFileUploadWithText() - filename: " + multipartFile.getOriginalFilename());
 
-                FileOutputStream writer = new FileOutputStream(
-                        "../../../KHGPM-Frontend/JongInHan/frontend/src/assets/productImages/" +
+                final String directory =
+
+                        "../../../KHGPM-Frontend/JongInHan/frontend/src/assets/productImages/";
+
+                FileOutputStream writer = new FileOutputStream( directory
+                         +
                                 multipartFile.getOriginalFilename()
                 );
 

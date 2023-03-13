@@ -30,12 +30,16 @@ public class BoardCommentTest {
 
     @Test
     public void 덧글_저장() {
-        Optional<TestBoard> mayTestBoard = testBoardRepository.findById(2L);
+        Optional<TestBoard> mayTestBoard = testBoardRepository.findById(4L);
         TestBoard testBoard = mayTestBoard.get();
 
         Comment comment = new Comment("시작");
 
         testBoard.setComment(comment);
+        testBoardRepository.save(testBoard);
+        testBoardRepository.save(testBoard);
+        testBoardRepository.save(testBoard);
+        testBoardRepository.save(testBoard);
         testBoardRepository.save(testBoard);
 
         commentRepository.save(comment);
@@ -43,14 +47,15 @@ public class BoardCommentTest {
 
     @Test
     public void 게시물_덧글_출력() {
-        List<Comment> commentList = commentRepository.findAllCommentsByBoardId(1L);
+        List<Comment> commentList = commentRepository.findAllCommentsByBoardId(4L);
         List<CommentResponse> commentResponses = new ArrayList<>();
 
         for (Comment comment: commentList) {
             commentResponses.add(new CommentResponse(comment.getContent()));
         }
 
-        System.out.println(commentResponses);
+//        System.out.println(commentResponses);
+        System.out.println("commentResponses = " + commentResponses);
     }
 
     @Test

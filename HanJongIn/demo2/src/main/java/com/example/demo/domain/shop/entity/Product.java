@@ -41,5 +41,6 @@ public class Product {
         imageData.setProduct(this);
         imageDataList.add(imageData);
     }
+
 }
 
