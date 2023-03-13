@@ -25,11 +25,8 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public Board register(BoardRequest boardRequest) {
-        Long lastBoardId = this.getLastEntityId();
 
-        Optional<Board> maybeBoard = boardRepository.findById(lastBoardId);
-
-        Board board = maybeBoard.get();
+        Board board = new Board();
         board.setTitle(boardRequest.getTitle());
         board.setWriter(boardRequest.getWriter());
         board.setContent(boardRequest.getContent());
