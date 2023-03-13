@@ -1,15 +1,14 @@
 package com.example.demo.forTest.boardComment;
 
-import com.example.demo.domain.forTest.controller.response.CommentResponse;
-import com.example.demo.domain.forTest.entity.Comment;
-import com.example.demo.domain.forTest.entity.TestBoard;
-import com.example.demo.domain.forTest.repository.CommentRepository;
-import com.example.demo.domain.forTest.repository.TestBoardRepository;
+import com.example.demo.domain.forTest.board.controller.response.CommentResponse;
+import com.example.demo.domain.forTest.board.entity.Comment;
+import com.example.demo.domain.forTest.board.entity.TestBoard;
+import com.example.demo.domain.forTest.board.repository.CommentRepository;
+import com.example.demo.domain.forTest.board.repository.TestBoardRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
