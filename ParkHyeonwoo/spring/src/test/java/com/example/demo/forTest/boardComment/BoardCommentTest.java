@@ -24,13 +24,13 @@ public class BoardCommentTest {
 
     @Test
     public void 게시물_저장() {
-        TestBoard board = new TestBoard("제목", "내용");
+        TestBoard board = new TestBoard("제목3", "내용3");
         testBoardRepository.save(board);
     }
 
     @Test
     public void 댓글_저장() {
-        Optional<TestBoard> mayTestBoard = testBoardRepository.findById(1L);
+        Optional<TestBoard> mayTestBoard = testBoardRepository.findById(3L);
         TestBoard testBoard = mayTestBoard.get();
 
         Comment comment = new Comment("댓글2");
@@ -55,10 +55,28 @@ public class BoardCommentTest {
 
     @Test
     public void 댓글_수정() {
-        Optional<Comment> maybeComment = commentRepository.findById(1L);
+        Optional<Comment> maybeComment = commentRepository.findById(2L);
         Comment comment = maybeComment.get();
 
-        comment.changeContent("이러쿵 저러쿵");
+        comment.changeContent("이러쿵 저러쿵2");
         commentRepository.save(comment);
+    }
+
+    @Test
+    public void 댓글_삭제() {
+        commentRepository.deleteById(4L);
+    }
+
+    @Test
+    public void 게시글_삭제() {
+        final Long boardId = 3L;
+        List<Comment> commentList = commentRepository.findAllCommentsByBoardId(boardId);
+
+        for(Comment comment: commentList) { // 댓글 먼저 다 지우고
+            System.out.println("comment 내용: " + comment.getContent());
+            commentRepository.delete(comment);
+        }
+
+        testBoardRepository.deleteById(boardId); // 보드 삭제
     }
 }

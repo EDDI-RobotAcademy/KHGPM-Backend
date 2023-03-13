@@ -22,7 +22,7 @@ public class TestBoard {
     private String content;
 
     //해당 TestBoard 에 속한 Comment 들
-    @OneToMany(mappedBy = "testBoard", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "testBoard", fetch = FetchType.EAGER) // 1(TestBoard):N(Comment),
     private List<Comment> comments = new ArrayList<>();
 
     public TestBoard(String title, String content) {

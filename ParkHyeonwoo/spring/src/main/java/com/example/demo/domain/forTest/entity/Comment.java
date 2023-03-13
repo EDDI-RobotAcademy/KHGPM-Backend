@@ -23,7 +23,7 @@ public class Comment {
     public Comment(String content) {
         this.content = content;
     }
-    
+
     public void changeContent (String content) {
         this.content = content;
     }
