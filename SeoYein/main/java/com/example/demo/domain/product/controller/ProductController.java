@@ -1,10 +1,13 @@
 package com.example.demo.domain.product.controller;
 
-import com.example.demo.domain.product.controller.request.ProductRequest;
+import com.example.demo.domain.product.controller.dto.ProductRequest;
+import com.example.demo.domain.product.controller.dto.RequestProductInfo;
 import com.example.demo.domain.product.entity.Product;
 import com.example.demo.domain.product.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,10 +20,12 @@ public class ProductController {
 
     public ProductController(ProductService productService) { this.productService = productService; }
 
-    @PostMapping("/register")
-    public void productRegister (@RequestBody ProductRequest productRequest) {
+    @PostMapping(value = "/register",
+            consumes = { MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE })
+    public void productRegister (@RequestPart(value = "imageFileList") List<MultipartFile> imageFileList,
+                                 @RequestPart(value = "productInfo") RequestProductInfo productRequest) {
         log.info("productRegister()");
-        productService.register(productRequest);
+        productService.register(imageFileList, productRequest);
     }
 
     @GetMapping("/list")
