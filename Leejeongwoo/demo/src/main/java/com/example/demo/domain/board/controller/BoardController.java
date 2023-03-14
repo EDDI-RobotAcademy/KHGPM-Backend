@@ -18,14 +18,20 @@ public class BoardController {
 
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
+
     }
 
     @PostMapping("/register")
-    public void boardRegister(@RequestBody BoardRequest boardRequest) {
+    public Board boardRegister(@RequestBody BoardRequest boardRequest) {
         log.info("boardRegister()");
 
-        boardService.register(boardRequest);
+        Board board = boardService.register(boardRequest);
+
+        System.out.println("레지스터 보드 아이디 "+board.getBoardId());
+
+        return board;
     }
+
 
     @GetMapping("/list")
     public List<Board> boardList() {
