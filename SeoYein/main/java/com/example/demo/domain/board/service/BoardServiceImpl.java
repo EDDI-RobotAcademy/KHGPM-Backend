@@ -20,7 +20,17 @@ public class BoardServiceImpl implements BoardService {
         this.boardRepository = boardRepository;
     }
 
+    /*
     @Override
+    public void register(BoardRequest boardRequest) {
+        Board board = new Board();
+        board.setTitle(boardRequest.getTitle());
+        board.setWriter(boardRequest.getWriter());
+        board.setContent(boardRequest.getContent());
+
+        boardRepository.save(board);
+    }
+    */
     public Board register(BoardRequest boardRequest) {
         Board board = new Board();
         board.setTitle(boardRequest.getTitle());
@@ -28,6 +38,7 @@ public class BoardServiceImpl implements BoardService {
         board.setContent(boardRequest.getContent());
 
         boardRepository.save(board);
+
         return board;
     }
 

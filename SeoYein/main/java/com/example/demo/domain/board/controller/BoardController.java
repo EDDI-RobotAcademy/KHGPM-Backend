@@ -17,11 +17,20 @@ public class BoardController {
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
     }
+    /*
+    @PostMapping("/register")
+    public void boardRegister (@RequestBody BoardRequest boardRequest) {
+        log.info("boardRegister()");
+        boardService.register(boardRequest);
+    }
+    */
     @PostMapping("/register")
     public Board boardRegister (@RequestBody BoardRequest boardRequest) {
         log.info("boardRegister()");
+
         return boardService.register(boardRequest);
     }
+
     @GetMapping("/list")
     public List<Board> boardList () {
         log.info("boardList()");
