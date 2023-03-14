@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public interface ShopService {
-    public void register(ShopRequest shopRequest, MultipartFile[] files) throws IOException;
+    String register(ShopRequest shopRequest) throws IOException;
 
     List<Product> list();
 }

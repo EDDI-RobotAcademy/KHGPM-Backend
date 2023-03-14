@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,22 +22,29 @@ public class ShopServiceImpl implements ShopService{
         this.shopRepository = shopRepository;
     }
 
-    public void register(ShopRequest shopRequest, MultipartFile[] files) throws IOException {
+    public String register(ShopRequest shopRequest) throws IOException {
         Product product = new Product();
         product.setName(shopRequest.getName());
         product.setDescription(shopRequest.getDescription());
         product.setPrice(shopRequest.getPrice());
 
-        for (MultipartFile file : files) {
+        for (MultipartFile file : shopRequest.getFileList()) {
             if (!file.isEmpty()) {
-                byte[] fileData = file.getBytes();
+                String filePath = "productImages/" + file.getOriginalFilename();
+
                 ImageData imageData = new ImageData();
-                imageData.setData(fileData);
+                imageData.setImageData(filePath);
                 product.addImageData(imageData);
+
+                FileOutputStream writer = new FileOutputStream("../../../KHGPM-Frontend/JongInHan/frontend/src/assets/" + filePath);
+                writer.write(file.getBytes());
+                writer.close();
             }
         }
 
         shopRepository.save(product);
+
+        return "Upload Success!!!";
     }
 
     @Override
