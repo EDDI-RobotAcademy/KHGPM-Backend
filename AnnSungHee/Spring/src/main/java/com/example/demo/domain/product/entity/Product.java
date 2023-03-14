@@ -5,7 +5,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -31,4 +33,8 @@ public class Product {
 
     @UpdateTimestamp
     private Date updDate;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    private List<Img> imgs = new ArrayList<>();
+
 }

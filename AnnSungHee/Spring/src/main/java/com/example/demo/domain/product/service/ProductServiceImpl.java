@@ -1,7 +1,7 @@
 package com.example.demo.domain.product.service;
 
-import com.example.demo.domain.board.entity.Board;
-import com.example.demo.domain.product.controller.request.ProductRequest;
+import com.example.demo.domain.product.controller.dto.ProductRequest;
+import com.example.demo.domain.product.entity.Img;
 import com.example.demo.domain.product.entity.Product;
 import com.example.demo.domain.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,18 +18,31 @@ public class ProductServiceImpl implements ProductService {
 
     final private ProductRepository productRepository;
 
+//    @Override
+//    public void register(ProductRequest productRequest) {
+//        Product product = new Product();
+//
+//        product.setProductName(productRequest.getProductName());
+//        product.setWriter(productRequest.getWriter());
+//        product.setContent(productRequest.getContent());
+//        product.setPrice(productRequest.getPrice());
+//
+//        productRepository.save(product);
+//    }
     @Override
-    public void register(ProductRequest productRequest) {
+    public void register(ProductRequest productRequest, String imgsrc) {
         Product product = new Product();
+        Img img = new Img();
 
         product.setProductName(productRequest.getProductName());
         product.setWriter(productRequest.getWriter());
         product.setContent(productRequest.getContent());
         product.setPrice(productRequest.getPrice());
+        // 저장된 이미지 경로를 Img 클래스에 저장
+        img.setImgName(imgsrc);
 
         productRepository.save(product);
     }
-
     @Override
     public List<Product> list() {
         return productRepository.findAll();

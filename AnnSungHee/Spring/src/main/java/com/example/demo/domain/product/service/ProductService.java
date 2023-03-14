@@ -1,13 +1,14 @@
 package com.example.demo.domain.product.service;
 
-import com.example.demo.domain.board.entity.Board;
-import com.example.demo.domain.product.controller.request.ProductRequest;
+import com.example.demo.domain.product.controller.dto.ProductRequest;
 import com.example.demo.domain.product.entity.Product;
 
 import java.util.List;
 
 public interface ProductService {
-    void register(ProductRequest productRequest);
+//    void register(ProductRequest productRequest);
+
+    void register(ProductRequest productRequest, String imgsrc);
 
     List<Product> list();
 
