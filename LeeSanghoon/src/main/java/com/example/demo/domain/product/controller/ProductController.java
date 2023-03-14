@@ -1,9 +1,6 @@
 package com.example.demo.domain.product.controller;
 
-import com.example.demo.domain.product.controller.dto.ProductReadResponse;
-import com.example.demo.domain.product.controller.dto.ProductRequest;
-import com.example.demo.domain.product.controller.dto.ProductListResponse;
-import com.example.demo.domain.product.controller.dto.RequestProductInfo;
+import com.example.demo.domain.product.controller.dto.*;
 import com.example.demo.domain.product.entity.ImageResource;
 import com.example.demo.domain.product.entity.Product;
 import com.example.demo.domain.product.service.ProductService;
@@ -19,7 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/product")
-@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:8081", allowedHeaders = "*")
 public class ProductController {
 
     final private ProductService productService;
@@ -74,7 +71,7 @@ public class ProductController {
     }
 
     @GetMapping("/imageList/{productId}")
-    public List<ImageResource> readProductImageResource(
+    public List<ImageResourceResponse> readProductImageResource(
             @PathVariable("productId") Long productId) {
 
         log.info("readProductImageResource(): " + productId);

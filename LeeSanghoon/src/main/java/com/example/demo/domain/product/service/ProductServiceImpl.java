@@ -1,9 +1,6 @@
 package com.example.demo.domain.product.service;
 
-import com.example.demo.domain.product.controller.dto.ProductReadResponse;
-import com.example.demo.domain.product.controller.dto.ProductRequest;
-import com.example.demo.domain.product.controller.dto.ProductListResponse;
-import com.example.demo.domain.product.controller.dto.RequestProductInfo;
+import com.example.demo.domain.product.controller.dto.*;
 import com.example.demo.domain.product.entity.ImageResource;
 import com.example.demo.domain.product.entity.Product;
 import com.example.demo.domain.product.repository.ImageResourceRepository;
@@ -72,7 +69,7 @@ public class ProductServiceImpl implements ProductService {
                 writer.write(multipartFile.getBytes());
                 writer.close();
 
-                ImageResource imageResource = new ImageResource(fullPath);
+                ImageResource imageResource = new ImageResource(multipartFile.getOriginalFilename());
                 imageResourceList.add(imageResource);
                 product.setImageResource(imageResource);
             }
@@ -148,12 +145,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ImageResource> findProductImage(Long productId) {
+    public List<ImageResourceResponse> findProductImage(Long productId) {
         List<ImageResource> imageResourceList = imageResourceRepository.findImagePathByProductId(productId);
+        List<ImageResourceResponse> imageResourceResponseList = new ArrayList<>();
+
         for (ImageResource imageResource: imageResourceList) {
             System.out.println("imageResource path: " + imageResource.getImageResourcePath());
+
+            imageResourceResponseList.add(new ImageResourceResponse(
+                    imageResource.getImageResourcePath()));
         }
 
-        return imageResourceList;
+        return imageResourceResponseList;
     }
 }
