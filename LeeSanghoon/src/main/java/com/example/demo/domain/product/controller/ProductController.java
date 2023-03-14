@@ -1,8 +1,10 @@
 package com.example.demo.domain.product.controller;
 
+import com.example.demo.domain.product.controller.dto.ProductReadResponse;
 import com.example.demo.domain.product.controller.dto.ProductRequest;
-import com.example.demo.domain.product.controller.dto.ProductResponse;
+import com.example.demo.domain.product.controller.dto.ProductListResponse;
 import com.example.demo.domain.product.controller.dto.RequestProductInfo;
+import com.example.demo.domain.product.entity.ImageResource;
 import com.example.demo.domain.product.entity.Product;
 import com.example.demo.domain.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -25,11 +27,11 @@ public class ProductController {
     @PostMapping(value = "/register",
                 consumes = { MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE })
     public void productRegister(
-            @RequestPart(value = "fileList") List<MultipartFile> fileList,
+            @RequestPart(value = "imageFileList") List<MultipartFile> imageFileList,
             @RequestPart(value = "productInfo") RequestProductInfo productRequest) {
         log.info("productRegister()");
 
-        productService.register(fileList, productRequest);
+        productService.register(imageFileList, productRequest);
     }
 
     /*
@@ -42,14 +44,14 @@ public class ProductController {
      */
 
     @GetMapping("/list")
-    public List<ProductResponse> productList () {
+    public List<ProductListResponse> productList () {
         log.info("boardList()");
 
         return productService.list();
     }
 
     @GetMapping("/{productId}")
-    public Product productRead(@PathVariable("productId") Long productId) {
+    public ProductReadResponse productRead(@PathVariable("productId") Long productId) {
         log.info("productRead()");
 
         return productService.read(productId);
@@ -69,5 +71,14 @@ public class ProductController {
         log.info("productModify(): " + productRequest + "id: " + productId);
 
         return productService.modify(productId, productRequest);
+    }
+
+    @GetMapping("/imageList/{productId}")
+    public List<ImageResource> readProductImageResource(
+            @PathVariable("productId") Long productId) {
+
+        log.info("readProductImageResource(): " + productId);
+
+        return productService.findProductImage(productId);
     }
 }

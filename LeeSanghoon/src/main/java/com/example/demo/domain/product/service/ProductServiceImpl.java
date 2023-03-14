@@ -1,7 +1,8 @@
 package com.example.demo.domain.product.service;
 
+import com.example.demo.domain.product.controller.dto.ProductReadResponse;
 import com.example.demo.domain.product.controller.dto.ProductRequest;
-import com.example.demo.domain.product.controller.dto.ProductResponse;
+import com.example.demo.domain.product.controller.dto.ProductListResponse;
 import com.example.demo.domain.product.controller.dto.RequestProductInfo;
 import com.example.demo.domain.product.entity.ImageResource;
 import com.example.demo.domain.product.entity.Product;
@@ -44,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Transactional
     @Override
-    public void register(List<MultipartFile> fileList, RequestProductInfo productRequest) {
+    public void register(List<MultipartFile> imageFileList, RequestProductInfo productRequest) {
         log.info("글자 출력: " + productRequest);
 
         List<ImageResource> imageResourceList = new ArrayList<>();
@@ -59,7 +60,7 @@ public class ProductServiceImpl implements ProductService {
         product.setPrice(productRequest.getPrice());
 
         try {
-            for (MultipartFile multipartFile : fileList) {
+            for (MultipartFile multipartFile : imageFileList) {
                 log.info("requestFileUploadWithText() - filename: " + multipartFile.getOriginalFilename());
 
                 String fullPath = fixedStringPath + multipartFile.getOriginalFilename();
@@ -89,12 +90,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductResponse> list() {
+    public List<ProductListResponse> list() {
         List<Product> productList = productRepository.findAll();
-        List<ProductResponse> productResponseList = new ArrayList<>();
+        List<ProductListResponse> productResponseList = new ArrayList<>();
 
         for (Product product: productList) {
-            productResponseList.add(new ProductResponse(
+            productResponseList.add(new ProductListResponse(
                     product.getProductId(), product.getProductName(),
                     product.getWriter(), product.getRegDate()
             ));
@@ -104,16 +105,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product read(Long productId) {
-        //Optional<Product> maybeProduct = productRepository.findById(productId);
-        Optional<Product> maybeProduct = productRepository.findImagePathById(productId);
+    public ProductReadResponse read(Long productId) {
+        Optional<Product> maybeProduct = productRepository.findById(productId);
 
         if (maybeProduct.isEmpty()) {
             log.info("읽을 수가 없드아!");
             return null;
         }
 
-        return maybeProduct.get();
+        Product product = maybeProduct.get();
+
+        ProductReadResponse productReadResponse = new ProductReadResponse(
+                product.getProductId(), product.getProductName(), product.getWriter(),
+                product.getContent(), product.getPrice(), product.getRegDate()
+        );
+
+        return productReadResponse;
     }
 
     @Override
@@ -138,5 +145,15 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(product);
 
         return product;
+    }
+
+    @Override
+    public List<ImageResource> findProductImage(Long productId) {
+        List<ImageResource> imageResourceList = imageResourceRepository.findImagePathByProductId(productId);
+        for (ImageResource imageResource: imageResourceList) {
+            System.out.println("imageResource path: " + imageResource.getImageResourcePath());
+        }
+
+        return imageResourceList;
     }
 }
