@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
@@ -37,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
         product.setPrice(productRequest.getPrice());
         product.setDetail(productRequest.getDetail());
 
-        final String fixedPath = "D:/proj/GitHub/KHGPM-Frontend/SeoYoonji/src/assets/imgs/";
+        final String fixedPath = "D:/proj/KHGPM-Frontend/SeoYoonji/src/assets/imgs/";
         try {
             for (MultipartFile multipartFile: productImgList) {
                 log.info(multipartFile.getOriginalFilename());
@@ -47,9 +46,9 @@ public class ProductServiceImpl implements ProductService {
                 writer.write(multipartFile.getBytes());
                 writer.close();
 
-                ProductImgs imgs = new ProductImgs(fixedPath + multipartFile.getOriginalFilename());
-                imgList.add(imgs);
-                product.setProductImgs(imgs);
+                ProductImgs productImgs = new ProductImgs(fixedPath + multipartFile.getOriginalFilename());
+                imgList.add(productImgs);
+                product.setProductImgs(productImgs);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -58,8 +57,8 @@ public class ProductServiceImpl implements ProductService {
         }
         productRepository.save(product);
 
-        for(ProductImgs imgs: imgList) {
-            productImgsRepository.save(imgs);
+        for(ProductImgs productImgs: imgList) {
+            productImgsRepository.save(productImgs);
         }
 
     }
