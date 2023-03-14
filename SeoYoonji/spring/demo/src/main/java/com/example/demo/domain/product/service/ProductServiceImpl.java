@@ -1,32 +1,67 @@
 package com.example.demo.domain.product.service;
 
-import com.example.demo.domain.product.controller.ProductController;
-import com.example.demo.domain.product.controller.request.ProductRequest;
+import com.example.demo.domain.product.controller.dto.ProductRequest;
+import com.example.demo.domain.product.controller.dto.RequestProductInfo;
 import com.example.demo.domain.product.entity.Product;
+import com.example.demo.domain.product.entity.ProductImgs;
+import com.example.demo.domain.product.repository.ProductImgsRepository;
 import com.example.demo.domain.product.repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
     final private ProductRepository productRepository;
-
-    public ProductServiceImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+    final private ProductImgsRepository productImgsRepository;
 
     @Override
-    public void register(ProductRequest productRequest) {
+    public void register(List<MultipartFile> productImgList, RequestProductInfo productRequest) {
+        List<ProductImgs> imgList = new ArrayList<>();
+
         Product product = new Product();
 
         product.setTitle(productRequest.getTitle());
         product.setPrice(productRequest.getPrice());
         product.setDetail(productRequest.getDetail());
 
+        final String fixedPath = "D:/proj/GitHub/KHGPM-Frontend/SeoYoonji/src/assets/imgs/";
+        try {
+            for (MultipartFile multipartFile: productImgList) {
+                log.info(multipartFile.getOriginalFilename());
+                FileOutputStream writer = new FileOutputStream(
+                        fixedPath + multipartFile.getOriginalFilename()
+                );
+                writer.write(multipartFile.getBytes());
+                writer.close();
+
+                ProductImgs imgs = new ProductImgs(fixedPath + multipartFile.getOriginalFilename());
+                imgList.add(imgs);
+                product.setProductImgs(imgs);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         productRepository.save(product);
+
+        for(ProductImgs imgs: imgList) {
+            productImgsRepository.save(imgs);
+        }
+
     }
 
     @Override
