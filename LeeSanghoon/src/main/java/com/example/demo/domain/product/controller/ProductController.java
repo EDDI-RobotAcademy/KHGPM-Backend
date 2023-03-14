@@ -1,14 +1,15 @@
 package com.example.demo.domain.product.controller;
 
-import com.example.demo.domain.board.controller.request.BoardRequest;
-import com.example.demo.domain.board.entity.Board;
-import com.example.demo.domain.product.controller.request.ProductRequest;
+import com.example.demo.domain.product.controller.dto.ProductRequest;
+import com.example.demo.domain.product.controller.dto.ProductResponse;
+import com.example.demo.domain.product.controller.dto.RequestProductInfo;
 import com.example.demo.domain.product.entity.Product;
 import com.example.demo.domain.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -21,15 +22,27 @@ public class ProductController {
 
     final private ProductService productService;
 
+    @PostMapping(value = "/register",
+                consumes = { MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE })
+    public void productRegister(
+            @RequestPart(value = "fileList") List<MultipartFile> fileList,
+            @RequestPart(value = "productInfo") RequestProductInfo productRequest) {
+        log.info("productRegister()");
+
+        productService.register(fileList, productRequest);
+    }
+
+    /*
     @PostMapping("/register")
     public void productRegister(@RequestBody ProductRequest productRequest) {
         log.info("productRegister()");
 
         productService.register(productRequest);
     }
+     */
 
     @GetMapping("/list")
-    public List<Product> productList () {
+    public List<ProductResponse> productList () {
         log.info("boardList()");
 
         return productService.list();
