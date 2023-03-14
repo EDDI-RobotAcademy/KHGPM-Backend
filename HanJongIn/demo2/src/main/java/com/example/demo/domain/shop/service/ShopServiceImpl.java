@@ -30,13 +30,13 @@ public class ShopServiceImpl implements ShopService{
 
         for (MultipartFile file : shopRequest.getFileList()) {
             if (!file.isEmpty()) {
-                String imageUrl = "../../../KHGPM-Frontend/JongInHan/frontend/src/assets/productImages/" + file.getOriginalFilename();
+                String filePath = "productImages/" + file.getOriginalFilename();
 
                 ImageData imageData = new ImageData();
-                imageData.setImageData(imageUrl);
+                imageData.setImageData(filePath);
                 product.addImageData(imageData);
 
-                FileOutputStream writer = new FileOutputStream(imageUrl);
+                FileOutputStream writer = new FileOutputStream("../../../KHGPM-Frontend/JongInHan/frontend/src/assets/" + filePath);
                 writer.write(file.getBytes());
                 writer.close();
             }

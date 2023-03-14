@@ -16,7 +16,10 @@ public class TestBoard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String title;
+
+    @Column
     private String content;
 
     @OneToMany(mappedBy = "testBoard", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
