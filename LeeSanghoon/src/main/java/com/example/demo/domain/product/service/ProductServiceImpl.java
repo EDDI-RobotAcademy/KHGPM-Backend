@@ -81,9 +81,11 @@ public class ProductServiceImpl implements ProductService {
 
         productRepository.save(product);
 
+        /*
         for (ImageResource imageResource: imageResourceList) {
             imageResourceRepository.save(imageResource);
-        }
+        } */
+        imageResourceRepository.saveAll(imageResourceList);
     }
 
     @Override
