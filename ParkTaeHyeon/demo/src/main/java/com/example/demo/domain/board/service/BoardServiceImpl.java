@@ -21,13 +21,15 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void register(BoardRequest boardRequest) {
+    public Board register(BoardRequest boardRequest) {
         Board board = new Board();
         board.setTitle(boardRequest.getTitle());
         board.setWriter(boardRequest.getWriter());
         board.setContent(boardRequest.getContent());
 
         boardRepository.save(board);
+
+        return board;
     }
     @Override
     public List<Board> list() {
@@ -40,7 +42,7 @@ public class BoardServiceImpl implements BoardService {
         Optional<Board> maybeBoard = boardRepository.findById(boardId);
 
         if (maybeBoard.isEmpty()) {
-            log.info("읽을 수가 없드아!");
+            log.info("읽을 수가 없음!");
             return null;
         }
 
@@ -68,5 +70,16 @@ public class BoardServiceImpl implements BoardService {
         boardRepository.save(board);
 
         return board;
+    }
+
+    @Override
+    public Long getCount() {
+        return boardRepository.countBy();
+    }
+
+    @Override
+    public Long getLastEntityId() {
+        Board board = boardRepository.findFirstByOrderByBoardIdDesc();
+        return board.getBoardId();
     }
 }
