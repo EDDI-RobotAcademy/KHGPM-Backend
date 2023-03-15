@@ -1,13 +1,13 @@
 package com.example.demo.domain.product.service;
 
 import com.example.demo.domain.product.controller.dto.ProductRequest;
+import com.example.demo.domain.product.controller.dto.ProductResponse;
 import com.example.demo.domain.product.controller.dto.RequestProductInfo;
 import com.example.demo.domain.product.entity.ImageResource;
 import com.example.demo.domain.product.entity.Product;
 import com.example.demo.domain.product.repository.ImageResourceRepository;
 import com.example.demo.domain.product.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,8 +17,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import static org.apache.logging.log4j.ThreadContext.isEmpty;
 
 @Slf4j
 @Service
@@ -77,8 +75,18 @@ public class ProductServiceImpl implements ProductService {
         }
     }
     @Override
-    public List<Product> list() {
-        return productRepository.findAll(Sort.by(Sort.Direction.DESC, "productId"));
+    public List<ProductResponse> list() {
+        List<Product> productList = productRepository.findAll();
+        List<ProductResponse> productResponses = new ArrayList<>();
+
+        for(Product product: productList) {
+            ProductResponse productResponse = new ProductResponse(product);
+            productResponses.add(productResponse);
+        }
+
+        // for-each 연습 좀 하자.
+
+        return productResponses;
     }
 
     @Override

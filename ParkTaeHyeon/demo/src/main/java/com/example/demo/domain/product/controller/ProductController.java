@@ -1,9 +1,9 @@
 package com.example.demo.domain.product.controller;
 
 import com.example.demo.domain.product.controller.dto.ProductRequest;
+import com.example.demo.domain.product.controller.dto.ProductResponse;
 import com.example.demo.domain.product.controller.dto.RequestProductInfo;
 import com.example.demo.domain.product.entity.Product;
-import com.example.demo.domain.product.entity.ResponseProduct;
 import com.example.demo.domain.product.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -38,7 +38,7 @@ public class ProductController {
     }
 
     @GetMapping("/list")
-    public List<Product> productList () {
+    public List<ProductResponse> productList () {
         log.info("productList()");
 
         return productService.list();
