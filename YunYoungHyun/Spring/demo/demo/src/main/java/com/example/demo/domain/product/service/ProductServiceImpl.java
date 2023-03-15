@@ -73,7 +73,7 @@ public class ProductServiceImpl implements ProductService {
             imageRepository.save(image);
         }
 
-        ProductResponse productResponse = new ProductResponse(product.getProductNo(), product.getName(), product.getPrice(), product.getWriter(), product.getContent());
+        ProductResponse productResponse = new ProductResponse(product);
         return productResponse;
     }
 

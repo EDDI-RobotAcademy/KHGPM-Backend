@@ -1,5 +1,6 @@
 package com.example.demo.domain.product.controller.dto;
 
+import com.example.demo.domain.product.entity.Product;
 import lombok.Data;
 import lombok.ToString;
 
@@ -19,6 +20,14 @@ public class ProductResponse {
         this.price = price;
         this.writer = writer;
         this.content = content;
+    }
+
+    public ProductResponse(Product product) {
+        this.productNo = product.getProductNo();
+        this.name = product.getName();
+        this.price = product.getPrice();
+        this.writer = product.getWriter();
+        this.content = product.getContent();
     }
 
 }
