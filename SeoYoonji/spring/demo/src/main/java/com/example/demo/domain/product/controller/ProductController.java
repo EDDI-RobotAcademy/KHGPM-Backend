@@ -1,6 +1,7 @@
 package com.example.demo.domain.product.controller;
 
 import com.example.demo.domain.product.controller.dto.ProductRequest;
+import com.example.demo.domain.product.controller.dto.ProductResponse;
 import com.example.demo.domain.product.controller.dto.RequestProductInfo;
 import com.example.demo.domain.product.entity.Product;
 import com.example.demo.domain.product.service.ProductService;
@@ -21,6 +22,7 @@ public class ProductController {
 
     final private ProductService productService;
 
+
     @PostMapping(value = "/register", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE })
     public void productRegister (@RequestPart(value = "productImgList")List<MultipartFile> productImgList,
                                  @RequestPart(value = "productInfo") RequestProductInfo productRequest) {
@@ -29,7 +31,7 @@ public class ProductController {
     }
 
     @GetMapping("/list")
-    public List<Product> productList () {
+    public List<ProductResponse> productList () {
         return productService.list();
     }
 

@@ -1,6 +1,7 @@
 package com.example.demo.domain.product.service;
 
 import com.example.demo.domain.product.controller.dto.ProductRequest;
+import com.example.demo.domain.product.controller.dto.ProductResponse;
 import com.example.demo.domain.product.controller.dto.RequestProductInfo;
 import com.example.demo.domain.product.entity.Product;
 import com.example.demo.domain.product.entity.ProductImgs;
@@ -64,8 +65,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> list() {
-        return productRepository.findAll(Sort.by(Sort.Direction.DESC, "productId"));
+    public List<ProductResponse> list() {
+        List<Product> pList = productRepository.findAll();
+        List<ProductResponse> productList = new ArrayList<>();
+        for(Product list: pList) {
+            productList.add(new ProductResponse(list));
+        }
+        return productList;
     }
 
     @Override
