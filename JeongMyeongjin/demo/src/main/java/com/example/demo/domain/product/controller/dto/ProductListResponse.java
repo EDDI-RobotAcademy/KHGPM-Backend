@@ -2,17 +2,16 @@ package com.example.demo.domain.product.controller.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+
+import java.util.Date;
 
 @Getter
-@ToString
 @RequiredArgsConstructor
-public class RequestProductInfo {
+public class ProductListResponse {
 
-    // 상품 정보를 요청하기 위한 객체
-
+    //상품 리스트를 응답하기 위한 객체
+    final private Long productId;
     final private String productName;
     final private String writer;
-    final private String content;
-    final private Integer price;
+    final private Date regDate;
 }

@@ -1,7 +1,6 @@
 package com.example.demo.domain.product.service;
 
-import com.example.demo.domain.product.controller.dto.ProductRequest;
-import com.example.demo.domain.product.controller.dto.RequestProductInfo;
+import com.example.demo.domain.product.controller.dto.*;
 import com.example.demo.domain.product.entity.Product;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,11 +10,13 @@ public interface ProductService {
     void register(List<MultipartFile> fileList,
                   RequestProductInfo productRequest);
 
-    List<Product> list();
+    List<ProductListResponse> list();
 
-    Product read(Long productId);
+    ProductReadResponse read(Long productId);
 
     void remove(Long productId);
 
     Product modify(Long productId, ProductRequest productRequest);
+
+    List<ImageResourceResponse> findProductImage(Long productId);
 }
