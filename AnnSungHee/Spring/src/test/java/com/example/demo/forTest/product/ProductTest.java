@@ -23,20 +23,15 @@ public class ProductTest {
 
     @Test
     public void 리스트_가져오기() {
-        List<Product> list = productRepository.findProduct();
-        List<Product> products = new ArrayList<>();
-        for (Object[] row : list) {
-            Product product = new Product();
-            product.setProductId((Long) row[0]);
-            product.setProductName((String) row[1]);
-            product.setWriter((String) row[2]);
-            product.setContent((String) row[3]);
-            product.setPrice((Integer) row[4]);
-            product.setRegDate((Date) row[5]);
-            product.setUpdDate((Date) row[6]);
-            products.add(product);
+        List<Product> productList = productRepository.findProduct();
+        for (Product product : productList) {
+            System.out.println("productId: " + product.getProductId());
+            System.out.println("productName: " + product.getProductName());
+            System.out.println("writer: " + product.getWriter());
+            System.out.println("content: " + product.getContent());
+            System.out.println("price: " + product.getPrice());
+            System.out.println("regDate: " + product.getRegDate());
+            System.out.println("updDate: " + product.getUpdDate());
         }
-        
-        System.out.println(Arrays.toString(list.toArray()));
     }
 }
