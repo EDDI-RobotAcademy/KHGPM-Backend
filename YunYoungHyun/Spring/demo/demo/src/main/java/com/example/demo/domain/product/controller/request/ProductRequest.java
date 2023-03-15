@@ -1,1 +1,0 @@
-    private Long views;
