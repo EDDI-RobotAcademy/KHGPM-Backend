@@ -14,9 +14,11 @@ public interface ProductService {
 
     List<Product> list();
 
-    Product read(Long boardId);
+    List<ProductResponse> list();
 
-    void remove(Long boardId);
+    Product read(Long productNo);
+
+    void remove(Long productNo);
 
     Product modify(Long productNo, ProductRequest productRequest);
 
