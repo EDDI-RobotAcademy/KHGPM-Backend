@@ -41,44 +41,37 @@ public class ProductServiceImpl implements ProductService {
         product.setWriter(productRequest.getWriter());
         product.setContent(productRequest.getContent());
 
-        if(imageFileList != null){
-            try {
-                for (MultipartFile multipartFile : imageFileList) {
-                    log.info("requestFileUploadWithText() - filename: " + multipartFile.getOriginalFilename());
+        try {
+            for (MultipartFile multipartFile : imageFileList) {
+                log.info("requestFileUploadWithText() - filename: " + multipartFile.getOriginalFilename());
 
-                    String fullPath = fixedStringPath + multipartFile.getOriginalFilename();
-                    FileOutputStream writer = new FileOutputStream(
-                            fixedStringPath + multipartFile.getOriginalFilename()
-                    );
-                    writer.write(multipartFile.getBytes());
-                    writer.close();
+                String fullPath = fixedStringPath + multipartFile.getOriginalFilename();
+                FileOutputStream writer = new FileOutputStream(
+                        fixedStringPath + multipartFile.getOriginalFilename()
+                );
+                writer.write(multipartFile.getBytes());
+                writer.close();
 
-                    Image image = new Image(fullPath);
-                    imageList.add(image);
+                Image image = new Image(multipartFile.getOriginalFilename());
+                imageList.add(image);
 
-                    // setImage(image) 하면 product 에 image 만 저장하는 게 아니고 image 에 product 도 저장한다.
-                    // 이게 무슨 말이냐? join 에 관한 얘기다.
-                    // 아래 코드만 보면 product 에 image 만 저장 하는 줄 알았더니?
-                    // setImage() 코드를 보니 image 에 product 도 저장해주네?
-                    product.setImage(image);
-                }
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+                // setImage(image) 하면 product 에 image 만 저장하는 게 아니고 image 에 product 도 저장한다.
+                // 이게 무슨 말이냐? join 에 관한 얘기다.
+                // 아래 코드만 보면 product 에 image 만 저장 하는 줄 알았더니?
+                // setImage() 코드를 보니 image 에 product 도 저장해주네?
+                product.setImage(image);
             }
-
-            productRepository.save(product);
-
-            for (Image image : imageList) {
-                imageRepository.save(image);
-            }
-
-            ProductResponse productResponse = new ProductResponse(product.getProductNo(), product.getName(), product.getPrice(), product.getWriter(), product.getContent());
-            return productResponse;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         productRepository.save(product);
+
+        for (Image image : imageList) {
+            imageRepository.save(image);
+        }
 
         ProductResponse productResponse = new ProductResponse(product.getProductNo(), product.getName(), product.getPrice(), product.getWriter(), product.getContent());
         return productResponse;

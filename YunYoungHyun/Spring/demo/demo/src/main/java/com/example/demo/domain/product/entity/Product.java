@@ -1,18 +1,22 @@
 package com.example.demo.domain.product.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+//@Data
 @Entity
+@Getter
+@Setter
 public class Product {
 
     @Id
-    @Column(name = "product_no")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productNo;
 
@@ -24,12 +28,14 @@ public class Product {
     @Column(length = 16, nullable = false)
     private String writer;
 
+    @Lob
     private String content;
 
 //    @Column(length = 10, nullable = false)
 //    private Long views;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<Image> imageList = new ArrayList<>();
 
     public void setImage(Image image) {

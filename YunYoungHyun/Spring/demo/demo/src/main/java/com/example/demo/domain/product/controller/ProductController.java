@@ -53,8 +53,8 @@ public class ProductController {
 
     @GetMapping("/{productNo}")
     public Product productRead(@PathVariable("productNo") Long productNo) {
-//        log.info("productRead()");
-        System.out.println(productNo);
+        log.info("productRead()");
+        System.out.println("컨트롤러에서 보는 productNo: "+ productNo);
         return productService.read(productNo);
     }
 
