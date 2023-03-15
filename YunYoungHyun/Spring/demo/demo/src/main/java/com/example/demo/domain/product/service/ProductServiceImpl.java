@@ -88,7 +88,7 @@ public class ProductServiceImpl implements ProductService {
         List<ProductResponse> productResponses = new ArrayList<>();
 
         for(Product product: productList) {
-            ProductResponse productResponse = new ProductResponse(product.getProductNo(), product.getName(), product.getPrice(), product.getWriter(), product.getContent());
+            ProductResponse productResponse = new ProductResponse(product);
             productResponses.add(productResponse);
         }
 
