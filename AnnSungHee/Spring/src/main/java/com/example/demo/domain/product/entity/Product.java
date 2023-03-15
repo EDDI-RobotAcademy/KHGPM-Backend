@@ -26,6 +26,9 @@ public class Product {
     @Lob
     private String content;
 
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    private List<ImageResource> imageResourceList = new ArrayList<>();
+
     private Integer price;
 
     @CreationTimestamp
@@ -34,7 +37,16 @@ public class Product {
     @UpdateTimestamp
     private Date updDate;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
-    private List<Img> imgs = new ArrayList<>();
+    public void setImageResource (ImageResource imageResource) {
+        imageResourceList.add(imageResource);
+        imageResource.setProduct(this);
+    }
 
+    public void setImageResourceList (List<ImageResource> imageResourceList) {
+        imageResourceList.addAll(imageResourceList);
+
+        for (int i = 0; i < imageResourceList.size(); i++) {
+            imageResourceList.get(i).setProduct(this);
+        }
+    }
 }

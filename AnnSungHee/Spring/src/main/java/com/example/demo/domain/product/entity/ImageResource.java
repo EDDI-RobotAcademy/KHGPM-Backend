@@ -1,21 +1,26 @@
 package com.example.demo.domain.product.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
 @Entity
-public class Img {
+@NoArgsConstructor
+public class ImageResource {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imgId;
+    private Long id;
 
-    @Column(length = 128, nullable = false)
-    private String imgName;
+    private String imageResourcePath;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
     private Product product;
+
+    public ImageResource(String imageResourcePath) {
+        this.imageResourcePath = imageResourcePath;
+    }
 }
