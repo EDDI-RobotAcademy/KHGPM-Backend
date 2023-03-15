@@ -1,11 +1,10 @@
 package com.example.demo.domain.product.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -15,24 +14,34 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
-    @Column(length = 128, nullable = false)
+    @Column(length = 120, nullable = false)
     private String productName;
 
-    @Column(length = 32, nullable = false)
-    private String productKategorie;
+    @Column(length = 20, nullable = false)
+    private String kategorie;
 
     @Lob
-    private String productContent;
+    private String content;
 
-    @Column(length = 32, nullable = false)
-    private String productBrand;
+    @Column(length = 20, nullable = false)
+    private String brand;
 
-    private Integer productPrice;
+    private Integer price;
 
-    @CreationTimestamp
-    private Date regDate;
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<ImageResource> imageResourceList = new ArrayList<>();
 
-    @UpdateTimestamp
-    private Date updDate;
+    public void setImageResource (ImageResource imageResource) {
+        imageResourceList.add(imageResource);
+        imageResource.setProduct(this);
+    }
 
+    public void setImageResourceList (List<ImageResource> imageResourceList) {
+        imageResourceList.addAll(imageResourceList);
+
+        for (int i = 0; i < imageResourceList.size(); i++) {
+            imageResourceList.get(i).setProduct(this);
+        }
+    }
 }
