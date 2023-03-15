@@ -45,7 +45,7 @@ public class ProductController {
     }
 
     @GetMapping("/list")
-    public List<Product> productList() {
+    public List<ProductResponse> productList() {
         log.info("productList()");
 
         return productService.list();
@@ -71,4 +71,5 @@ public class ProductController {
 
         return productService.modify(productNo, productRequest);
     }
+
 }

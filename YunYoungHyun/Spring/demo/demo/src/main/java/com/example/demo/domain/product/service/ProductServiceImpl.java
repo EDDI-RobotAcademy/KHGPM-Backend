@@ -84,9 +84,23 @@ public class ProductServiceImpl implements ProductService {
         return productResponse;
     }
 
+//    @Override
+//    public List<Image> findProductImage(Long productNo) {
+//        return imageRepository.findByProductNo(productNo);
+//    }
+
     @Override
-    public List<Product> list() {
-        return productRepository.findAll(Sort.by(Sort.Direction.DESC, "productNo"));
+    public List<ProductResponse> list() {
+        List<Product> productList = productRepository.findAll();
+        List<ProductResponse> productResponses = new ArrayList<>();
+
+        for(Product product: productList) {
+            ProductResponse productResponse = new ProductResponse(product.getProductNo(), product.getName(), product.getPrice(), product.getWriter(), product.getContent());
+            productResponses.add(productResponse);
+        }
+
+        System.out.println("서비스에서 보는: "+ productResponses);
+        return productResponses;
     }
 
     @Override
