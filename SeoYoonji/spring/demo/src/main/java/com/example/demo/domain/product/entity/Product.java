@@ -19,7 +19,6 @@ public class Product {
     @Column(length = 128, nullable = false)
     private String title;
 
-    @Column(length = 32, nullable = false)
     private Integer price;
 
     @Lob

@@ -2,7 +2,6 @@ package com.example.demo.domain.product.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
