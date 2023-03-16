@@ -1,19 +1,24 @@
 package com.example.demo.domain.product.service;
 
-import com.example.demo.domain.board.entity.Board;
-import com.example.demo.domain.product.controller.request.ProductRequest;
+import com.example.demo.domain.product.controller.dto.*;
+import com.example.demo.domain.product.entity.ImageResource;
 import com.example.demo.domain.product.entity.Product;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface ProductService {
-    void register(ProductRequest productRequest);
+    //void register(ProductRequest productRequest);
+    void register(List<MultipartFile> imageFileList,
+                  RequestProductInfo productRequest);
 
-    List<Product> list();
+    List<ProductListResponse> list();
 
-    Product read(Long productId);
+    ProductReadResponse read(Long productId);
 
     void remove(Long productId);
 
     Product modify(Long productId, ProductRequest productRequest);
+
+    List<ImageResourceResponse> findProductImage(Long productId);
 }
