@@ -4,6 +4,7 @@ import com.example.demo.domain.member.service.MemberService;
 import com.example.demo.domain.member.service.request.MemberLoginRequest;
 import com.example.demo.domain.member.service.request.MemberRegisterRequest;
 import com.example.demo.domain.product.controller.dto.ProductReadResponse;
+import com.example.demo.domain.security.service.RedisService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,9 @@ public class MemberTest {
 
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private RedisService redisService;
 
     @Test
     public void 없는_이메일에대한_유효성_검증() {
@@ -59,7 +63,7 @@ public class MemberTest {
 
     @Test
     public void 로그아웃_테스트() {
-        memberService.logout("3bc84f8e-683f-43eb-b904-c4bc9312fdd1");
+        redisService.deleteByKey("3bc84f8e-683f-43eb-b904-c4bc9312fdd1");
     }
 
 }
