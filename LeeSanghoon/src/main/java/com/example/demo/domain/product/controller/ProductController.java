@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/product")
-@CrossOrigin(origins = "http://localhost:8081", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class ProductController {
 
     final private ProductService productService;
@@ -30,15 +30,6 @@ public class ProductController {
 
         productService.register(imageFileList, productRequest);
     }
-
-    /*
-    @PostMapping("/register")
-    public void productRegister(@RequestBody ProductRequest productRequest) {
-        log.info("productRegister()");
-
-        productService.register(productRequest);
-    }
-     */
 
     @GetMapping("/list")
     public List<ProductListResponse> productList () {
