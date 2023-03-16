@@ -24,7 +24,7 @@ public class ProductController {
             consumes = { MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE })
     public void productRegister(
             // formData 형태로 받아온 상품 이미지파일 리스트와 상품 정보를 @RequestPart로 각각 받아옴
-            @RequestPart(value = "fileList") List<MultipartFile> fileList,
+            @RequestPart(value = "fileList", required = false) List<MultipartFile> fileList,
             @RequestPart(value = "productInfo") RequestProductInfo productRequest) {
         log.info("productRegister()");
 

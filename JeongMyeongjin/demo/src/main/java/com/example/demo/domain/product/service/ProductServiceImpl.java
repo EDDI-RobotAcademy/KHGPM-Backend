@@ -59,41 +59,42 @@ public class ProductServiceImpl implements ProductService {
         product.setContent(productRequest.getContent());
         product.setPrice(productRequest.getPrice());
 
-        try {
-            for (MultipartFile multipartFile: fileList) {
-                log.info("requestFileUploadWithText() - filename: " + multipartFile.getOriginalFilename());
+        if(fileList != null) {
+            try {
+                for (MultipartFile multipartFile: fileList) {
+                    log.info("requestFileUploadWithText() - filename: " + multipartFile.getOriginalFilename());
 
-                // 파일 저장 위치에 파일 이름을 더해 fullPath 문자열 저장
-                String fullPath = fixedStringPath + multipartFile.getOriginalFilename();
+                    // 파일 저장 위치에 파일 이름을 더해 fullPath 문자열 저장
+                    String fullPath = fixedStringPath + multipartFile.getOriginalFilename();
 
 
-                FileOutputStream writer = new FileOutputStream(
-                        fixedStringPath + multipartFile.getOriginalFilename()
-                );
+                    FileOutputStream writer = new FileOutputStream(
+                            fixedStringPath + multipartFile.getOriginalFilename()
+                    );
 
-                writer.write(multipartFile.getBytes());
-                writer.close();
+                    writer.write(multipartFile.getBytes());
+                    writer.close();
 
-                // 이미지 경로를 DB에 저장할때 경로를 제외한 이미지파일 이름만 저장하도록 함 (프론트에서 경로 지정하여 사용하기 위함)
-                ImageResource imageResource = new ImageResource(multipartFile.getOriginalFilename());
-                imageResourceList.add(imageResource);
-                product.setImageResource(imageResource);
+                    // 이미지 경로를 DB에 저장할때 경로를 제외한 이미지파일 이름만 저장하도록 함 (프론트에서 경로 지정하여 사용하기 위함)
+                    ImageResource imageResource = new ImageResource(multipartFile.getOriginalFilename());
+                    imageResourceList.add(imageResource);
+                    product.setImageResource(imageResource);
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            imageResourceRepository.saveAll(imageResourceList);
         }
 
         productRepository.save(product);
-
         /*
         for (ImageResource imageResource: imageResourceList) {
             imageResourceRepository.save(imageResource);
         }
         */
-
-        imageResourceRepository.saveAll(imageResourceList);
     }
 
     @Override
