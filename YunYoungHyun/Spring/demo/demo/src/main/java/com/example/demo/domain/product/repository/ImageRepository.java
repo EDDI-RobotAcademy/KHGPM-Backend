@@ -12,5 +12,7 @@ public interface ImageRepository extends JpaRepository<Image, Long> {
     @Query("select i from Image i join i.product p where p.productNo = :productNo")
     List<Image> findAllImagesByproductNo(@Param("productNo") Long productNo);
 
+    void deleteByProductProductNo(Long productNo);
+
 //    List<Image> findByProductNo(Long productNo);
 }

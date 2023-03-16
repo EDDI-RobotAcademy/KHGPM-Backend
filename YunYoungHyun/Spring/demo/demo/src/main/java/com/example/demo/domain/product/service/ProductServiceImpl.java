@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,6 +27,12 @@ public class ProductServiceImpl implements ProductService {
 
     final private ProductRepository productRepository;
     final private ImageRepository imageRepository;
+
+//    @Autowired
+//    public ProductServiceImpl(ProductRepository productRepository, ImageRepository imageRepository) {
+//        this.productRepository = productRepository;
+//        this.imageRepository = imageRepository;
+//    }
 
     @Override
     public ProductResponse register(List<MultipartFile> imageFileList, RequestProductInfo productRequest) {
@@ -111,8 +118,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void remove(Long productNo) {
-        productRepository.deleteById(productNo);
+        imageRepository.deleteByProductProductNo(productNo);
+        productRepository.deleteByProductNo(productNo);
     }
 
     @Override
