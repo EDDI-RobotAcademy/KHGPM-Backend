@@ -2,7 +2,6 @@ package com.example.demo.domain.member.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Address;
 
 import javax.persistence.*;
 
@@ -16,9 +15,22 @@ public class MemberProfile {
     private Long id;
 
     @Embedded
+    private Address address;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
     private MemberProfile(Address address) {
         this.address = address;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
+    public static MemberProfile of (String city, String street, String addressDetail, String zipcode) {
+        final Address address = Address.of(city, street, addressDetail, zipcode);
+        return new MemberProfile(address);
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 }
