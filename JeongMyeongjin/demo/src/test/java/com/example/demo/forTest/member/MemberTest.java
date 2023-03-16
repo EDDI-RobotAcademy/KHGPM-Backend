@@ -40,5 +40,21 @@ public class MemberTest {
                                 "sdjflsdjldgdkkkkkhkhkhkhkh@test.com", "test")));
     }
 
+    @Test
+    public void 아이디_및_비밀번호_틀린_상태_테스트() {
+        assertThrows(
+                RuntimeException.class,
+                () ->
+                        memberService.signIn(new MemberLoginRequest(
+                                "test@test.com", "sdhflsdjfsgl")));
+    }
+
+    @Test
+    public void 올바른_로그인_테스트() {
+        String userToken = memberService.signIn(new MemberLoginRequest(
+                "test@test.com", "test"));
+
+        System.out.println("userToken: " + userToken);
+    }
 
 }
