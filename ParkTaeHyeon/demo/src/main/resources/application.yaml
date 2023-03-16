@@ -16,4 +16,9 @@ spring:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+
+  servlet:
+      multipart:
+          maxFileSize: 10MB
+          maxRequestSize: 10MB
