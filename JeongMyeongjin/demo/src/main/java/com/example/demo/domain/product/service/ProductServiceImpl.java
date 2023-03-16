@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -140,6 +141,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void remove(Long productId) {
+
+        // 상품 아이디로 해당 상품 이미지 파일 정보 리스트로 가져옴
+        List<ImageResource> imagePath = imageResourceRepository.findImagePathByProductId(productId);
+
+        // 가져온 이미지 파일 리스트 반복문을 통해 DB와 로컬에 저장되어있는 이미지 파일 삭제
+        for (ImageResource i: imagePath) {
+            imageResourceRepository.deleteById(i.getId());
+
+            String filePath = "../../../KHGPM-Frontend/JeongMyeongjin/frontend/src/assets/uploadImgs/" + i.getImageResourcePath();
+            File file = new File(filePath);
+            file.delete();
+        }
         productRepository.deleteById(productId);
     }
 
