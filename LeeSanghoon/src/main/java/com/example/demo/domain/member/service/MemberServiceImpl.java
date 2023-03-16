@@ -79,4 +79,9 @@ public class MemberServiceImpl implements MemberService {
         
         throw new RuntimeException("가입된 사용자가 아닙니다!");
     }
+
+    @Override
+    public void logout(String userToken) {
+        redisService.deleteByKey(userToken);
+    }
 }

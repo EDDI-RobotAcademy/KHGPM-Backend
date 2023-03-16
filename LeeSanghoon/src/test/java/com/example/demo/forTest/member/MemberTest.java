@@ -57,4 +57,9 @@ public class MemberTest {
         System.out.println("userToken: " + userToken);
     }
 
+    @Test
+    public void 로그아웃_테스트() {
+        memberService.logout("3bc84f8e-683f-43eb-b904-c4bc9312fdd1");
+    }
+
 }
