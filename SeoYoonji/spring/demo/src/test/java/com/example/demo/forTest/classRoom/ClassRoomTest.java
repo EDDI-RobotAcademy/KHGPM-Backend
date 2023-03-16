@@ -65,10 +65,10 @@ public class ClassRoomTest {
 
     @Test
     public void 삭제() {
-        Optional<TestStudent> maybeStudent = studentRepository.findById(4L);
+        Optional<TestStudent> maybeStudent = studentRepository.findById(5L);
         TestStudent testStudent = maybeStudent.get();
 
-        testStudent.setClassRoom(null);
+        testStudent.setClassRoom(null);  //연관 관계 삭제할 때는 null 로 관계를 끊어야함
         studentRepository.delete(testStudent);
     }
 }
