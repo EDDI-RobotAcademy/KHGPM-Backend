@@ -6,7 +6,8 @@ import com.example.demo.domain.board.entity.Board;
 import java.util.List;
 
 public interface BoardService {
-    public Long register(BoardRequest boardRequest);
+    //public void register(BoardRequest boardRequest);
+    public Board register(BoardRequest boardRequest);
 
     List<Board> list();
 

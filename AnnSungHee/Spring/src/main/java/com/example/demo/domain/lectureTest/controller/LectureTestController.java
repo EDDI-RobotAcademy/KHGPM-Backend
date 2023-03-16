@@ -6,12 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-// @Slf4j는 로그 역할을 함
 @Slf4j
 @RestController
 @RequestMapping("/spring-2nd")
-public class LectrueTestController {
+public class LectureTestController {
 
     @GetMapping("/first")
     public String helloSpring () {
@@ -27,7 +25,8 @@ public class LectrueTestController {
 
     @GetMapping("/third")
     public TestMember returnEntityTest () {
-        TestMember testMember = new TestMember(1L, "hi", 7L);
+        TestMember testMember =
+                new TestMember(1L, "hi", 7L);
 
         return testMember;
     }

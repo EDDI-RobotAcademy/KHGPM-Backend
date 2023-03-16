@@ -27,10 +27,10 @@ class DemoApplicationTests {
 		BoardRequest boardRequest = new BoardRequest(
 				board.getTitle(), board.getWriter(), board.getContent());
 
-//		List<Board> conditionMatchingBoardList =
-//				boardRepository.findByBoardIdAndWriter(9L, boardRequest.getWriter());
+		List<Board> conditionMatchingBoardList =
+				boardRepository.findByBoardIdAndWriter(9L, boardRequest.getWriter());
 
-//		System.out.println("result: " + conditionMatchingBoardList.get(0));
+		System.out.println("result: " + conditionMatchingBoardList.get(0));
 	}
 
 }

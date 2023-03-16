@@ -12,6 +12,6 @@ public class VueAxiosTestController {
 
     @PostMapping("/receive-test")
     public void receiveTest (@RequestBody VueRequestTestData vueRequestTestData) {
-        log.info("요청된 데이터 정보 확인 : " + vueRequestTestData);
+        log.info("요청된 데이터 정보 확인: " + vueRequestTestData);
     }
 }

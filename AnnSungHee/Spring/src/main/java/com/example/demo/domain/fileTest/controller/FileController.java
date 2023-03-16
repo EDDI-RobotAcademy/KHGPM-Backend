@@ -19,11 +19,12 @@ import java.util.List;
 public class FileController {
 
     @PostMapping(value = "/uploadImgsWithText",
-            consumes = { MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE })
+                consumes = { MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE })
     public String requestFileUploadWithText(
             @RequestPart(value = "fileList") List<MultipartFile> fileList,
             @RequestPart(value = "info") RequestFileInfo info) {
-            log.info("글자 출력: " + info);
+
+        log.info("글자 출력: " + info);
 
         try {
             for (MultipartFile multipartFile: fileList) {
@@ -32,7 +33,7 @@ public class FileController {
                 // 사용자 계정 이름마다 별도로 사진을 배치하게 구성
                 // 등록한 시간을 파일명 어딘가에 붙여서 파일을 저장
                 FileOutputStream writer = new FileOutputStream(
-                        "../../../KHGPM-Frontend/AnnSungHee/src/assets/uploadImgs/" +
+                        "../../KHGPM-Frontend/LeeSanghoon/frontend/src/assets/uploadImgs/" +
                                 multipartFile.getOriginalFilename()
                 );
 

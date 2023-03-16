@@ -5,28 +5,48 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-@Data   // 클래스 내부에 필드들의 getter, setter, toString, equals, hashCode 등을 자동으로 생성
-@Entity // JPA에서 엔티티 클래스임을 나타내기 위한 애노테이션
-/**
- * Spring Boot 프레임워크에서 JPA를 사용하여 게시판(Product) 엔티티 클래스를 정의
- */
+@Data
+@Entity
 public class Product {
 
-    @Id // 해당 필드가 엔티티의 주키(primary key)임을 나타내는 애노테이션입니다.
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // 엔티티의 주키 값을 자동으로 생성하기 위한 애노테이션
-    // GenerationType.IDENTITY는 데이터베이스가 자동으로 생성해주는 자동증가형 컬럼을 사용하는 것을 의미
     private Long productId;
 
     @Column(length = 128, nullable = false)
-    // 엔티티 필드에 대한 매핑 정보를 설정하는 애노테이션
-    // length는 문자열의 길이를 지정하고, nullable은 null 값을 허용할지 여부를 지정
-    private String name;
+    private String productName;
 
-    @Column(nullable = false)
-    // 엔티티 필드에 대한 매핑 정보를 설정하는 애노테이션
-    // 해당 코드는 int(정수형)이기 때문에 length는 지정필요 없음 nullable만 설정
-    private int price;
+    @Column(length = 32, nullable = false)
+    private String writer;
+
+    @Lob
+    private String content;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    private List<ImageResource> imageResourceList = new ArrayList<>();
+
+    private Integer price;
+
+    @CreationTimestamp
+    private Date regDate;
+
+    @UpdateTimestamp
+    private Date updDate;
+
+    public void setImageResource (ImageResource imageResource) {
+        imageResourceList.add(imageResource);
+        imageResource.setProduct(this);
+    }
+
+    public void setImageResourceList (List<ImageResource> imageResourceList) {
+        imageResourceList.addAll(imageResourceList);
+
+        for (int i = 0; i < imageResourceList.size(); i++) {
+            imageResourceList.get(i).setProduct(this);
+        }
+    }
 }
