@@ -26,20 +26,6 @@ public class ProductServiceImpl implements ProductService {
     final private ProductRepository productRepository;
     final private ImageResourceRepository imageResourceRepository;
 
-    /*
-    @Override
-    public void register(ProductRequest productRequest) {
-        Product product = new Product();
-
-        product.setProductName(productRequest.getProductName());
-        product.setWriter(productRequest.getWriter());
-        product.setContent(productRequest.getContent());
-        product.setPrice(productRequest.getPrice());
-
-        productRepository.save(product);
-    }
-     */
-
     @Transactional
     @Override
     public void register(List<MultipartFile> imageFileList, RequestProductInfo productRequest) {
