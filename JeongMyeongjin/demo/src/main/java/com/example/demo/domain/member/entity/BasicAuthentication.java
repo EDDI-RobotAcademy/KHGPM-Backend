@@ -1,5 +1,7 @@
 package com.example.demo.domain.member.entity;
 
+import com.example.demo.domain.utility.encrypt.EncryptionUtil;
+import com.example.demo.domain.utility.password.PasswordHashConverter;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -9,7 +11,7 @@ public class BasicAuthentication extends Authentication {
 
     @Setter
     @Column(nullable = false)
-    @Convert(converter = PasswordHashConvert.class)
+    @Convert(converter = PasswordHashConverter.class)
     private String password;
 
     public BasicAuthentication (Member member, String authenticationType, String password) {
