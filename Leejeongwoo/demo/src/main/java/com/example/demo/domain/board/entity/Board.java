@@ -5,9 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.sql.Date;
 
 
 @Data
@@ -32,5 +30,6 @@ public class Board {
 
     @UpdateTimestamp
     private Date updDate;
+
 
 }
