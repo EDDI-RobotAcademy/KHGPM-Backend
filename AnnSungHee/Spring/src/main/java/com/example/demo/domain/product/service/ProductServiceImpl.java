@@ -1,7 +1,6 @@
 package com.example.demo.domain.product.service;
 
-import com.example.demo.domain.product.controller.dto.ProductRequest;
-import com.example.demo.domain.product.controller.dto.RequestProductInfo;
+import com.example.demo.domain.product.controller.dto.*;
 import com.example.demo.domain.product.entity.ImageResource;
 import com.example.demo.domain.product.entity.Product;
 import com.example.demo.domain.product.repository.ImageResourceRepository;
@@ -11,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,33 +26,50 @@ public class ProductServiceImpl implements ProductService {
     final private ProductRepository productRepository;
     final private ImageResourceRepository imageResourceRepository;
 
+    /*
     @Override
-    public void register(List<MultipartFile> fileList, RequestProductInfo productRequest) {
-        log.info("글자 출력: " + productRequest);
-        // ImageResource를 저장하는 List 자료구조 생성 변수명은 imageResourceList
-        List<ImageResource> imageResourceList = new ArrayList<>();
-        // 사진을 저장할 기본 경로 설정
-        final String fixedStringPath = "../../../KHGPM-Frontend/AnnSungHee/src/assets/uploadImgs/";
-        // 데이터 테이블의 구조인 Product의 접근할수 있게 생성자 선언
+    public void register(ProductRequest productRequest) {
         Product product = new Product();
-        // Product의 변수 저장
+
+        product.setProductName(productRequest.getProductName());
+        product.setWriter(productRequest.getWriter());
+        product.setContent(productRequest.getContent());
+        product.setPrice(productRequest.getPrice());
+
+        productRepository.save(product);
+    }
+     */
+
+    @Transactional
+    @Override
+    public void register(List<MultipartFile> imageFileList, RequestProductInfo productRequest) {
+        log.info("글자 출력: " + productRequest);
+
+        List<ImageResource> imageResourceList = new ArrayList<>();
+
+        final String fixedStringPath = "../../../KHGPM-Frontend/AnnSungHee/src/assets/uploadImgs/";
+
+        Product product = new Product();
+
         product.setProductName(productRequest.getProductName());
         product.setWriter(productRequest.getWriter());
         product.setContent(productRequest.getContent());
         product.setPrice(productRequest.getPrice());
 
         try {
-            for (MultipartFile multipartFile : fileList) {
+            for (MultipartFile multipartFile : imageFileList) {
                 log.info("requestFileUploadWithText() - filename: " + multipartFile.getOriginalFilename());
 
                 String fullPath = fixedStringPath + multipartFile.getOriginalFilename();
 
-                FileOutputStream writer = new FileOutputStream(fullPath);
+                FileOutputStream writer = new FileOutputStream(
+                        fixedStringPath + multipartFile.getOriginalFilename()
+                );
 
                 writer.write(multipartFile.getBytes());
                 writer.close();
-                // 파일이 저장된 경로로 ImageResource 생성자 적용
-                ImageResource imageResource = new ImageResource(fullPath);
+
+                ImageResource imageResource = new ImageResource(multipartFile.getOriginalFilename());
                 imageResourceList.add(imageResource);
                 product.setImageResource(imageResource);
             }
@@ -64,18 +81,30 @@ public class ProductServiceImpl implements ProductService {
 
         productRepository.save(product);
 
+        /*
         for (ImageResource imageResource: imageResourceList) {
             imageResourceRepository.save(imageResource);
+        } */
+        imageResourceRepository.saveAll(imageResourceList);
+    }
+
+    @Override
+    public List<ProductListResponse> list() {
+        List<Product> productList = productRepository.findAll();
+        List<ProductListResponse> productResponseList = new ArrayList<>();
+
+        for (Product product: productList) {
+            productResponseList.add(new ProductListResponse(
+                    product.getProductId(), product.getProductName(),
+                    product.getWriter(), product.getRegDate()
+            ));
         }
+
+        return productResponseList;
     }
 
     @Override
-    public List<Product> list() {
-        return productRepository.findAllWithImageResourceList();
-    }
-
-    @Override
-    public Product read(Long productId) {
+    public ProductReadResponse read(Long productId) {
         Optional<Product> maybeProduct = productRepository.findById(productId);
 
         if (maybeProduct.isEmpty()) {
@@ -83,7 +112,14 @@ public class ProductServiceImpl implements ProductService {
             return null;
         }
 
-        return maybeProduct.get();
+        Product product = maybeProduct.get();
+
+        ProductReadResponse productReadResponse = new ProductReadResponse(
+                product.getProductId(), product.getProductName(), product.getWriter(),
+                product.getContent(), product.getPrice(), product.getRegDate()
+        );
+
+        return productReadResponse;
     }
 
     @Override
@@ -108,5 +144,20 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(product);
 
         return product;
+    }
+
+    @Override
+    public List<ImageResourceResponse> findProductImage(Long productId) {
+        List<ImageResource> imageResourceList = imageResourceRepository.findImagePathByProductId(productId);
+        List<ImageResourceResponse> imageResourceResponseList = new ArrayList<>();
+
+        for (ImageResource imageResource: imageResourceList) {
+            System.out.println("imageResource path: " + imageResource.getImageResourcePath());
+
+            imageResourceResponseList.add(new ImageResourceResponse(
+                    imageResource.getImageResourcePath()));
+        }
+
+        return imageResourceResponseList;
     }
 }

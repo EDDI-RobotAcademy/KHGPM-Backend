@@ -5,12 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @Query("SELECT DISTINCT p FROM Product p JOIN FETCH p.imageResourceList")
-    List<Product> findAllWithImageResourceList();
-
-    @Query("SELECT productId, productName, writer, content, price, regDate, updDate FROM Product")
-    List<Product> findProduct();
+    @Query("select p from Product p join p.imageResourceList irl where p.productId = :id")
+    Optional<Product> findImagePathById(Long id);
 }

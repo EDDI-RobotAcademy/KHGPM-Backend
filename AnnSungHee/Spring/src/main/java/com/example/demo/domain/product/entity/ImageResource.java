@@ -1,6 +1,7 @@
 package com.example.demo.domain.product.entity;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
