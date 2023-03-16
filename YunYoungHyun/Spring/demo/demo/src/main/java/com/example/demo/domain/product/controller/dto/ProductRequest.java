@@ -1,4 +1,4 @@
-package com.example.demo.domain.product.controller.request;
+package com.example.demo.domain.product.controller.dto;
 
 import lombok.Getter;
 
@@ -8,11 +8,10 @@ import javax.persistence.Lob;
 @Getter
 public class ProductRequest {
 
-    private Long productNo;
     private String name;
     private Long price;
     private String writer;
     private String content;
-    private Long views;
+    private String imageName;
 
 }
