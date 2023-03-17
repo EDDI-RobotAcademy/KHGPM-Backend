@@ -61,7 +61,9 @@ public class MemberController {
 
     @PostMapping("/logout")
     public void logout(@RequestBody String token) {
+        token = token.substring(0, token.length() - 1);
         log.info("logout(): " + token);
+
 
         redisService.deleteByKey(token);
     }
