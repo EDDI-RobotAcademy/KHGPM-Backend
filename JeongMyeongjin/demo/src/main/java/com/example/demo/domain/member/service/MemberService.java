@@ -9,4 +9,6 @@ public interface MemberService {
     Boolean signUp(MemberRegisterRequest memberRegisterRequest);
 
     String signIn(MemberLoginRequest memberLoginRequest);
+
+    void logout(String userToken);
 }
