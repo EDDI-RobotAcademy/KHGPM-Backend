@@ -1,5 +1,7 @@
 package com.example.demo.domain.member.service;
 
+import com.example.demo.domain.member.service.request.EmailMatchRequest;
+import com.example.demo.domain.member.service.request.EmailPasswordRequest;
 import com.example.demo.domain.member.service.request.MemberLoginRequest;
 import com.example.demo.domain.member.service.request.MemberRegisterRequest;
 
@@ -10,5 +12,7 @@ public interface MemberService {
 
     String signIn(MemberLoginRequest memberLoginRequest);
 
-    void logout(String userToken);
+    Boolean applyNewPassword(EmailPasswordRequest toEmailPasswordRequest);
+
+    Boolean emailMatch(EmailMatchRequest toEmailMatchRequest);
 }
