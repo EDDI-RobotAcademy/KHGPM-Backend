@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/product")
-@CrossOrigin(origins = "http://localhost:8107", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class ProductController {
 
     final private ProductService productService;
@@ -60,7 +60,7 @@ public class ProductController {
 
     @DeleteMapping("/{productNo}")
     public void productRemove(@PathVariable("productNo") Long productNo) {
-        log.info("productModify()");
+        log.info("productRemove()");
 
         productService.remove(productNo);
     }
