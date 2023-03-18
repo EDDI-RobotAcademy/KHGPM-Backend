@@ -9,7 +9,7 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@ToString(callSuper = true) // 부모꺼까지 다 뿌려라
+@ToString(callSuper = true)
 @NoArgsConstructor
 @DiscriminatorValue(Authentication.BASIC_AUTH)
 public class BasicAuthentication extends Authentication {

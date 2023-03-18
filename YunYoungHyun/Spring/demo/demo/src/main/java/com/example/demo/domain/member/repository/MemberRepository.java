@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    // FETCH TYPE LAZY 에 의해 proxy 참조가 안돼서 join fetch 로
+    // FETCH TYPE LAZY에 의해 proxy 참조가 안되서 join fetch로 강제 참조시킴
     @Query("select m from Member m join fetch m.authentications where m.email = :email")
     Optional<Member> findByEmail(String email);
 }

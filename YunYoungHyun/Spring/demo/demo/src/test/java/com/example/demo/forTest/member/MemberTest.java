@@ -48,4 +48,5 @@ public class MemberTest {
 
 //        System.out.println("로그인 테스트에서 보는 "+ userToken);
     }
+
 }

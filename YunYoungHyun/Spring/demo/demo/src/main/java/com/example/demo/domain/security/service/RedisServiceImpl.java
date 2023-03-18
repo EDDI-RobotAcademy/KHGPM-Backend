@@ -1,7 +1,6 @@
 package com.example.demo.domain.security.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
@@ -27,7 +26,7 @@ public class RedisServiceImpl implements RedisService {
         String tempMemberId = value.get(token);
         Long memberId;
 
-        if(tempMemberId == null) { memberId = null; }
+        if (tempMemberId == null) { memberId = null; }
         else { memberId = Long.parseLong(tempMemberId); }
 
         return memberId;
@@ -38,7 +37,7 @@ public class RedisServiceImpl implements RedisService {
         redisTemplate.delete(token);
     }
 
-//    public Long isRefreshTokenExists(String token) {
-//        return getValueByKey(token);
-//    }
+    public boolean isRefreshTokenExists(String token) {
+        return getValueByKey(token) != null;
+    }
 }

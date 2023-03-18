@@ -19,7 +19,7 @@ public class MemberRegisterForm {
     private String addressDetail;
     private String zipcode;
 
-    public MemberRegisterRequest toMemberRegisterRequest() {
+    public MemberRegisterRequest toMemberRegisterRequest () {
         return new MemberRegisterRequest(email, password, city, street, addressDetail, zipcode);
     }
 }

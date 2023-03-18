@@ -36,14 +36,15 @@ public class Member {
     public boolean isRightPassword(String plainToCheck) {
         final Optional<Authentication> maybeBasicAuth = findBasicAuthentication();
 
-        if(maybeBasicAuth.isPresent()) {
-            final BasicAuthentication authentication = (BasicAuthentication)maybeBasicAuth.get();
+        if (maybeBasicAuth.isPresent()) {
+            final BasicAuthentication authentication = (BasicAuthentication) maybeBasicAuth.get();
             return authentication.isRightPassword(plainToCheck);
         }
+
         return false;
     }
 
-    private Optional<Authentication> findBasicAuthentication() {
+    private Optional<Authentication> findBasicAuthentication () {
         return authentications
                 .stream()
                 .filter(authentication -> authentication instanceof BasicAuthentication)
