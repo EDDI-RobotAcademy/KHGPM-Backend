@@ -69,4 +69,11 @@ public class ProductController {
 
         return productService.findProductImage(productId);
     }
+
+    @GetMapping("/all")
+    public List<AllProductResponse> allProductList () {
+        log.info("allProductList()");
+
+        return productService.all();
+    }
 }
