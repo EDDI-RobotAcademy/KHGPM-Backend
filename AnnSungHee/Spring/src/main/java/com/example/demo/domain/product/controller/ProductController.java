@@ -1,7 +1,7 @@
 package com.example.demo.domain.product.controller;
 
-import com.example.demo.domain.product.controller.dto.ProductRequest;
-import com.example.demo.domain.product.controller.dto.RequestProductInfo;
+import com.example.demo.domain.product.controller.dto.*;
+import com.example.demo.domain.product.entity.ImageResource;
 import com.example.demo.domain.product.entity.Product;
 import com.example.demo.domain.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -31,15 +31,24 @@ public class ProductController {
         productService.register(imageFileList, productRequest);
     }
 
+    /*
+    @PostMapping("/register")
+    public void productRegister(@RequestBody ProductRequest productRequest) {
+        log.info("productRegister()");
+
+        productService.register(productRequest);
+    }
+     */
+
     @GetMapping("/list")
-    public List<Product> productList () {
+    public List<ProductListResponse> productList () {
         log.info("boardList()");
 
         return productService.list();
     }
 
     @GetMapping("/{productId}")
-    public Product productRead(@PathVariable("productId") Long productId) {
+    public ProductReadResponse productRead(@PathVariable("productId") Long productId) {
         log.info("productRead()");
 
         return productService.read(productId);
@@ -59,5 +68,14 @@ public class ProductController {
         log.info("productModify(): " + productRequest + "id: " + productId);
 
         return productService.modify(productId, productRequest);
+    }
+
+    @GetMapping("/imageList/{productId}")
+    public List<ImageResourceResponse> readProductImageResource(
+            @PathVariable("productId") Long productId) {
+
+        log.info("readProductImageResource(): " + productId);
+
+        return productService.findProductImage(productId);
     }
 }
