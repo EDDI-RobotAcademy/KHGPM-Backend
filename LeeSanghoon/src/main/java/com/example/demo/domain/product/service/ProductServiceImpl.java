@@ -146,4 +146,21 @@ public class ProductServiceImpl implements ProductService {
 
         return imageResourceResponseList;
     }
+
+    @Override
+    public List<AllProductResponse> all() {
+        List<Product> productList = productRepository.findAll();
+        List<AllProductResponse> allProductList = new ArrayList<>();
+
+        for (Product product: productList) {
+            List<ImageResource> imageResourceList = imageResourceRepository.findImagePathByProductId(product.getProductId());
+
+            allProductList.add(new AllProductResponse(
+                    product.getProductId(), product.getProductName(),
+                    product.getWriter(), product.getRegDate(),
+                    imageResourceList));
+        }
+
+        return allProductList;
+    }
 }
