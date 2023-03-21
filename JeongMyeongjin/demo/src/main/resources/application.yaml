@@ -17,6 +17,13 @@ spring:
     hibernate:
       ddl-auto: update
 
+  cache:
+    type: redis
+
+    redis:
+      host: 127.0.0.1
+      port: 6380
+
   servlet:
     multipart:
       maxFileSize: 10MB
