@@ -15,7 +15,6 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/file")
-@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class FileController {
 
     @PostMapping(value = "/uploadImgsWithText",
