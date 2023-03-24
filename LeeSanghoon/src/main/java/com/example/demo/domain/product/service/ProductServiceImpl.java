@@ -114,7 +114,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product modify(Long productId, ProductRequest productRequest) {
+    public Product modify(Long productId, List<MultipartFile> imageFileList, RequestProductInfo productRequest) {
+        List<ImageResource> imageResourceList = new ArrayList<>();
+
+        final String fixedStringPath = "../../KHGPM-Frontend/LeeSanghoon/frontend/src/assets/uploadImgs/";
+
         Optional<Product> maybeProduct = productRepository.findById(productId);
 
         if (maybeProduct.isEmpty()) {
@@ -127,10 +131,52 @@ public class ProductServiceImpl implements ProductService {
         product.setContent(productRequest.getContent());
         product.setPrice(productRequest.getPrice());
 
+        try {
+            for (MultipartFile multipartFile : imageFileList) {
+                log.info("requestFileUploadWithText() - filename: " + multipartFile.getOriginalFilename());
+
+                String fullPath = fixedStringPath + multipartFile.getOriginalFilename();
+
+                FileOutputStream writer = new FileOutputStream(
+                        fixedStringPath + multipartFile.getOriginalFilename()
+                );
+
+                writer.write(multipartFile.getBytes());
+                writer.close();
+
+                ImageResource imageResource = new ImageResource(multipartFile.getOriginalFilename());
+                imageResourceList.add(imageResource);
+                product.setImageResource(imageResource);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         productRepository.save(product);
 
         return product;
     }
+
+//    @Override
+//    public Product modify(Long productId, ProductRequest productRequest) {
+//        Optional<Product> maybeProduct = productRepository.findById(productId);
+//
+//        if (maybeProduct.isEmpty()) {
+//            System.out.println("Product 정보를 찾지 못했습니다: " + productId);
+//            return null;
+//        }
+//
+//        Product product = maybeProduct.get();
+//        product.setProductName(productRequest.getProductName());
+//        product.setContent(productRequest.getContent());
+//        product.setPrice(productRequest.getPrice());
+//
+//        productRepository.save(product);
+//
+//        return product;
+//    }
 
     @Override
     public List<ImageResourceResponse> findProductImage(Long productId) {

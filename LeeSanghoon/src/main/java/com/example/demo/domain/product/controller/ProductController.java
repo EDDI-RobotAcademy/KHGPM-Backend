@@ -51,13 +51,16 @@ public class ProductController {
         productService.remove(productId);
     }
 
-    @PutMapping("/{productId}")
+    @PutMapping(value = "/{productId}",
+            consumes = { MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE })
     public Product productModify(@PathVariable("productId") Long productId,
-                             @RequestBody ProductRequest productRequest) {
+                                 @RequestPart(value = "imageFileList") List<MultipartFile> imageFileList,
+                                 @RequestPart(value = "productInfo") RequestProductInfo productRequest) {
+                             //@RequestBody ProductRequest productRequest) {
 
         log.info("productModify(): " + productRequest + "id: " + productId);
 
-        return productService.modify(productId, productRequest);
+        return productService.modify(productId, imageFileList, productRequest);
     }
 
     @GetMapping("/imageList/{productId}")
