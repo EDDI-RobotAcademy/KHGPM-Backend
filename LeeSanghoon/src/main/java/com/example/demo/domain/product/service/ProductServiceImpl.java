@@ -11,10 +11,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -110,14 +112,52 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void remove(Long productId) {
+        //imageResourceRepository.deleteSpecificProduct(productId);
+        //productRepository.deleteById(productId);
+
+        List<ImageResource> removeImages = imageResourceRepository.findImagePathByProductId(productId);
+
+        final String fixedStringPath = "../../KHGPM-Frontend/LeeSanghoon/frontend/src/assets/uploadImgs/";
+
+        for (int i = 0; i < removeImages.size(); i++) {
+
+            String fileName = removeImages.get(i).getImageResourcePath();
+            System.out.println(fileName);
+
+            File vueFile = new File(fixedStringPath + fileName);
+
+            if (vueFile.exists()) {
+                vueFile.delete();
+            } else {
+                System.out.println("파일 삭제 실패!");
+            }
+        }
+
+        imageResourceRepository.deleteSpecificProduct(productId);
         productRepository.deleteById(productId);
     }
 
     @Override
     public Product modify(Long productId, List<MultipartFile> imageFileList, RequestProductInfo productRequest) {
         List<ImageResource> imageResourceList = new ArrayList<>();
+        List<ImageResource> removeImages = imageResourceRepository.findImagePathByProductId(productId);
 
         final String fixedStringPath = "../../KHGPM-Frontend/LeeSanghoon/frontend/src/assets/uploadImgs/";
+
+        for (int i = 0; i < removeImages.size(); i++) {
+
+            String fileName = removeImages.get(i).getImageResourcePath();
+            System.out.println(fileName);
+
+            File vueFile = new File(fixedStringPath + fileName);
+
+            if (vueFile.exists()) {
+                vueFile.delete();
+            } else {
+                System.out.println("파일 삭제 실패!");
+            }
+        }
+        imageResourceRepository.deleteSpecificProduct(productId);
 
         Optional<Product> maybeProduct = productRepository.findById(productId);
 
@@ -130,6 +170,8 @@ public class ProductServiceImpl implements ProductService {
         product.setProductName(productRequest.getProductName());
         product.setContent(productRequest.getContent());
         product.setPrice(productRequest.getPrice());
+
+        //imageResourceRepository.deleteSpecificProduct(productId);
 
         try {
             for (MultipartFile multipartFile : imageFileList) {
@@ -155,6 +197,7 @@ public class ProductServiceImpl implements ProductService {
         }
 
         productRepository.save(product);
+        imageResourceRepository.saveAll(imageResourceList);
 
         return product;
     }
