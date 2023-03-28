@@ -30,4 +30,12 @@ public class Board {
 
     @UpdateTimestamp
     private Date updDate;
+
+    public Board(String title, String writer, String content) {
+        this.title = title;
+        this.writer = writer;
+        this.content = content;
+    }
+
+    public Board() { }
 }
